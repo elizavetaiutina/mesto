@@ -14,7 +14,7 @@
 
 .profile__button-add::before {
   content: "";
-  background-image: url(../../../images/Button-ADD.png);
+  background-image: url(../../../images/Button-Add.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
