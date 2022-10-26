@@ -1,7 +1,7 @@
 # Проект: MESTO
 
 ### Макет:
-https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1
+[https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1]
 
 ---
 
@@ -17,10 +17,11 @@ https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0
 ### CSS3
 
 Flexbox вёрстка, Grid layout вёрстка, создана файловая структура по методологии БЭМ nested.
+Создан pop-up элемент.
 
 ---
 
-В дальнейшем планируется: добавить Java Script для создания интерактивного интерфейса.
+В дальнейшем планируется: работать над данным проектом в течении следующих спринтов.
 
 ---
 
