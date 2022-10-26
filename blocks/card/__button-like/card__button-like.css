@@ -1,0 +1,17 @@
+.card__button-like {
+  background-image: url(../../../images/Button-like.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 22px;
+  height: 19px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card__button-like:hover {
+  transform: scale(1.2);
+}

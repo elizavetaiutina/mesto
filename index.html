@@ -1,13 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./pages/index.css">
-</head>
-<body>
-  
-</body>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MESTO</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body class="content">
+    <div class="page">
+      <!--HEADER-->
+      <header class="header">
+        <img src="./images/logo.png" alt="Логотип- Место" class="logo" />
+      </header>
+      <main class="main">
+        <!--PROFILE-->
+        <section class="profile">
+          <img
+            src="./images/avatarKusto.jpg"
+            alt="Аватар Жак-Ив Кусто"
+            class="profile__avatar"
+          />
+          <div class="profile__info">
+            <div class="profile__name-edit">
+              <p class="profile__name">Жак-Ив Кусто</p>
+              <button type="button" class="profile__button-edit"></button>
+            </div>
+            <p class="profile__profession">Исследователь океана</p>
+          </div>
+          <button type="button" class="profile__button-add"></button>
+        </section>
+        <!--GALLERY-->
+        <section class="gallery">
+          <ul class="gallery__card-list">
+            <li class="card">
+              <img
+                src="./images/Post-karachaevsk.png"
+                alt="Карачаевск"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__name">Карачаевск</h2>
+                <button type="button" class="card__button-like"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/Post-Elbrus.png"
+                alt="Гора Эльбрус"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__name">Гора Эльбрус</h2>
+                <button type="button" class="card__button-like"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/Post-Dombay.png"
+                alt="Домбай"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__name">Домбай</h2>
+                <button type="button" class="card__button-like"></button>
+              </div>
+            </li>
+            <!--4 карточка-->
+            <li class="card">
+              <img
+                src="./images/Post-Elbrus.png"
+                alt="Гора Эльбрус"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__name">Гора Эльбрус</h2>
+                <button type="button" class="card__button-like"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/Post-Dombay.png"
+                alt="Домбай"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__name">Домбай</h2>
+                <button type="button" class="card__button-like"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/Post-karachaevsk.png"
+                alt="Карачаевск"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__name">Карачаевск</h2>
+                <button type="button" class="card__button-like"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <!--FOOTER-->
+      <footer class="footer">
+        <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+      </footer>
+    </div>
+  </body>
 </html>

@@ -1,38 +1,54 @@
 @import url(../vendor/normalize.css);
-@import url(../vendor/fonts/fonts.css);
+@import url(../vendor/fonts/inter.css);
+
+@import url(../blocks/page/page.css);
+@import url(../blocks/content/content.css);
+@import url();
+@import url();
+@import url();
+
+/*HEADER*/
+@import url(../blocks/header/header.css);
+@import url(../blocks/logo/logo.css);
 @import url();
 @import url();
 @import url();
 @import url();
 @import url();
 
+/*MAIN*/
+@import url(../blocks/main/main.css);
 @import url();
-@import url();
+
+/*SECTION - PROFILE*/
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__name-edit/profile__name-edit.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__button-edit/profile__button-edit.css);
+@import url(../blocks/profile/__profession/profile__profession.css);
+@import url(../blocks/profile/__button-add/profile__button-add.css);
 @import url();
 @import url();
 @import url();
 @import url();
 @import url();
 
-@import url();
-@import url();
-@import url();
-@import url();
+/*SECTION - GALLERY*/
+@import url(../blocks/gallery/gallery.css);
+@import url(../blocks/gallery/__card-list/gallery__card-list.css);
+@import url(../blocks/card/card.css);
+@import url(../blocks/card/__image/card__image.css);
+@import url(../blocks/card/__info/card__info.css);
+@import url(../blocks/card/__name/card__name.css);
+@import url(../blocks/card/__button-like/card__button-like.css);
 @import url();
 @import url();
 @import url();
 
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
+/*FOOTER*/
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url();
 @import url();
