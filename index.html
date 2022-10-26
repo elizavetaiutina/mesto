@@ -14,6 +14,26 @@
         <img src="./images/logo.png" alt="Логотип- Место" class="logo" />
       </header>
       <main class="main">
+        <!--POP-UP-->
+        <section class="pop-up">
+          <div class="pop-up__container">
+            <button type="button" class="pop-up__exit"></button>
+            <h2 class="pop-up__title">Редактировать профиль</h2>
+            <form class="form">
+              <input
+                type="text"
+                class="form__input form__input_info_name"
+                placeholder="Жак-Ив Кусто"
+              />
+              <input
+                type="text"
+                class="form__input form__input_info_profession"
+                placeholder="Исследователь океана"
+              />
+              <button type="button" class="form__button-save">Сохранить</button>
+            </form>
+          </div>
+        </section>
         <!--PROFILE-->
         <section class="profile">
           <img
@@ -23,7 +43,7 @@
           />
           <div class="profile__info">
             <div class="profile__name-edit">
-              <p class="profile__name">Жак-Ив Кусто</p>
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
               <button type="button" class="profile__button-edit"></button>
             </div>
             <p class="profile__profession">Исследователь океана</p>

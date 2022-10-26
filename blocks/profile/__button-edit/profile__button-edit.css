@@ -8,11 +8,11 @@
   min-width: 18px;
   min-height: 18px;
   cursor: pointer;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .profile__button-edit:hover {
-  opacity: 0.3;
+  opacity: 0.6;
 }
 
 @media screen and (min-width: 1024px) {
