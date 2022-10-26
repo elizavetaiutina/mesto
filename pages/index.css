@@ -14,6 +14,7 @@
 
 /*SECTION - POP-UP*/
 @import url(../blocks/pop-up/pop-up.css);
+@import url(../blocks/pop-up/_opened/popup_opened.css);
 @import url(../blocks/pop-up/__exit/pop-up__exit.css);
 @import url(../blocks/pop-up/__container/pop-up__container.css);
 @import url(../blocks/pop-up/__title/pop-up__title.css);
