@@ -15,11 +15,11 @@
 .card__button-like:hover {
   opacity: 0.5;
 }
-/*
+
 .card__button-like:focus {
   opacity: 0.5;
 }
-*/
+
 .card__button-like:active {
   background-image: url(../../../images/Button-like-active.svg);
   opacity: 1;
