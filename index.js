@@ -35,8 +35,8 @@ profileEditButton.addEventListener("click", openPopup);
 popupCloseButton.addEventListener("click", closePopup);
 
 // Обработчик «отправки» формы, хотя пока она никуда отправляться не будет
-function formSubmitHandler(evt) {
-  evt.preventDefault();
+function formSubmitHandler (form) {
+  form.preventDefault();
 
   profileName.textContent = nameInput.value;
   profileProfession.textContent = jobInput.value;
@@ -45,4 +45,4 @@ function formSubmitHandler(evt) {
 }
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
-saveButton.addEventListener("submit", formSubmitHandler);
+formElement.addEventListener('submit', formSubmitHandler);
