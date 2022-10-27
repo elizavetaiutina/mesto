@@ -14,3 +14,7 @@
 .form__input:not(:first-child) {
   margin-top: 30px;
 }
+
+.form__input:focus {
+  outline: none;
+}
