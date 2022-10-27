@@ -1,8 +1,8 @@
 .card__button-like {
-  /*background-image: url(../../../images/Button-like.svg);
+  background-image: url(../../../images/Button-like.svg);
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;*/
+  background-position: center;
   width: 22px;
   height: 19px;
   border: none;
@@ -10,19 +10,17 @@
   padding: 0;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
-  color: black;
-  background-color: black;
 }
 
 .card__button-like:hover {
   opacity: 0.5;
 }
-
+/*
 .card__button-like:focus {
   opacity: 0.5;
 }
-
+*/
 .card__button-like:active {
-  background-image: url(../../../../images/Button-like-active.svg);
+  background-image: url(../../../images/Button-like-active.svg);
   opacity: 1;
 }
