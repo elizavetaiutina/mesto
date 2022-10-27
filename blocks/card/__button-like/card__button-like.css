@@ -10,7 +10,8 @@
   padding: 0;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
-  background-color: transparent;
+  color: black;
+  background-color: black;
 }
 
 .card__button-like:hover {
