@@ -1,26 +1,48 @@
+// Находим кнопки открытия и закрытия поп-апа
 let profileEditButton = document.querySelector(".profile__button-edit");
 let popupCloseButton = document.querySelector(".pop-up__exit");
 let popup = document.querySelector(".pop-up");
 
+// Находим поля профиля
 let profileName = document.querySelector(".profile__name");
 let profileProfession = document.querySelector(".profile__profession");
-let inputName = document.querySelector(".form__input_info_name");
-let inputProfession = document.querySelector(".form__input_info_profession");
 
+// Находим форму и поля формы
+let formElement = document.querySelector(".form");
+let nameInput = document.querySelector(".form__input_info_name");
+let jobInput = document.querySelector(".form__input_info_profession");
+let saveButton = document.querySelector(".form__button-save");
+
+// Функция для того, чтобы поля были заполнены теми значениями, которые отображаются на странице
 function addValueInput() {
-  inputName.value = profileName.textContent;
-  inputProfession.value = profileProfession.textContent;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileProfession.textContent;
 }
 
+// Функция открытия поп-апа
 function openPopup() {
   popup.classList.add("popup_opened");
   addValueInput();
 }
 
+// Функция закрытия поп-апа
 function closePopup() {
   popup.classList.remove("popup_opened");
 }
 
+// Обработчики событии (кликов) для открытия и закрытия поп-апа
 profileEditButton.addEventListener("click", openPopup);
-
 popupCloseButton.addEventListener("click", closePopup);
+
+// Обработчик «отправки» формы, хотя пока она никуда отправляться не будет
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+
+  profileName.textContent = nameInput.value;
+  profileProfession.textContent = jobInput.value;
+
+  closePopup();
+}
+
+// Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
+saveButton.addEventListener("submit", formSubmitHandler);
