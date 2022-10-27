@@ -1,8 +1,8 @@
 .pop-up__container {
   position: relative;
   box-sizing: border-box;
-  width: calc(100vw - 38px);;
-  min-height: 322px;  
+  width: calc(100vw - 38px);
+  min-height: 322px;
   background: #ffffff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
