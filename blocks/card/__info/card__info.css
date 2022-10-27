@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 20px 31px 21px;
+  margin: 25px 20px 31px 21px;
   margin: 0;
-  max-width: 246px;
+  min-width: 246px;
   box-sizing: border-box;
 }
