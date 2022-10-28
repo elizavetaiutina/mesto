@@ -13,16 +13,11 @@ let nameInput = document.querySelector(".form__input_info_name");
 let jobInput = document.querySelector(".form__input_info_profession");
 let saveButton = document.querySelector(".form__button-save");
 
-// Функция для того, чтобы поля были заполнены теми значениями, которые отображаются на странице
-function addValueInput() {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileProfession.textContent;
-}
-
 // Функция открытия поп-апа
 function openPopup() {
   popup.classList.add("pop-up_opened");
-  addValueInput();
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileProfession.textContent;
 }
 
 // Функция закрытия поп-апа
@@ -35,7 +30,7 @@ profileEditButton.addEventListener("click", openPopup);
 popupCloseButton.addEventListener("click", closePopup);
 
 // Обработчик «отправки» формы, хотя пока она никуда отправляться не будет
-function formSubmitHandler (form) {
+function formSubmitHandler(form) {
   form.preventDefault();
 
   profileName.textContent = nameInput.value;
@@ -45,4 +40,4 @@ function formSubmitHandler (form) {
 }
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener("submit", formSubmitHandler);
