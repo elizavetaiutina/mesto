@@ -21,13 +21,13 @@ function addValueInput() {
 
 // Функция открытия поп-апа
 function openPopup() {
-  popup.classList.add("popup_opened");
+  popup.classList.add("pop-up_opened");
   addValueInput();
 }
 
 // Функция закрытия поп-апа
 function closePopup() {
-  popup.classList.remove("popup_opened");
+  popup.classList.remove("pop-up_opened");
 }
 
 // Обработчики событии (кликов) для открытия и закрытия поп-апа

@@ -1,12 +1,13 @@
 .profile__button-edit {
+  box-sizing: border-box;
+  border: 1px solid #ffffff;
   background-image: url(../../../images/Button-Edit.svg);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 7.5px 7.5px;
   background-color: #000000;
-  border: none;
-  min-width: 18px;
-  min-height: 18px;
+  width: 18px;
+  height: 18px;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
 }
@@ -17,7 +18,9 @@
 
 @media screen and (min-width: 1024px) {
   .profile__button-edit {
-    min-width: 24px;
-    min-height: 24px;
+    width: 24px;
+    height: 24px;
+    background-size: 10px 10px;
+    transform: translateY(3px);
   }
 }

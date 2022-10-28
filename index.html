@@ -1,56 +1,42 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MESTO</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="stylesheet" href="./pages/index.css">
   </head>
   <body class="content">
     <div class="page">
       <!--HEADER-->
       <header class="header">
-        <img src="./images/logo.svg" alt="Логотип- Место" class="logo" />
+        <img src="./images/logo.svg" alt="Логотип- Место" class="logo">
       </header>
       <main class="main">
-        <!--POP-UP-->
-        <section class="pop-up">
-          <div class="pop-up__container">
-            <button type="button" class="pop-up__exit"></button>
-            <h2 class="pop-up__title">Редактировать профиль</h2>
-            <form name="form" class="form">
-              <input
-                type="text"
-                name="name"
-                class="form__input form__input_info_name"
-                placeholder="Имя"
-              />
-              <input
-                type="text"
-                name="profession"
-                class="form__input form__input_info_profession"
-                placeholder="О себе"
-              />
-              <button type="submit" class="form__button-save">Сохранить</button>
-            </form>
-          </div>
-        </section>
         <!--PROFILE-->
         <section class="profile">
           <img
             src="./images/avatarKusto.jpg"
             alt="Аватар Жак-Ив Кусто"
             class="profile__avatar"
-          />
+            >
           <div class="profile__info">
             <div class="profile__name-edit">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" class="profile__button-edit"></button>
+              <button
+                type="button"
+                aria-label="Изменить данные профиля"
+                class="profile__button-edit"
+              ></button>
             </div>
             <p class="profile__profession">Исследователь океана</p>
           </div>
-          <button type="button" class="profile__button-add"></button>
+          <button
+            type="button"
+            aria-label="Добавить"
+            class="profile__button-add"
+          ></button>
         </section>
         <!--GALLERY-->
         <section class="gallery">
@@ -60,10 +46,14 @@
                 src="./images/Post-karachaevsk.png"
                 alt="Карачаевск"
                 class="card__image"
-              />
+              >
               <div class="card__info">
                 <h2 class="card__name">Карачаевск</h2>
-                <button type="button" class="card__button-like"></button>
+                <button
+                  type="button"
+                  aria-label="Поставить лайк"
+                  class="card__button-like"
+                ></button>
               </div>
             </li>
             <li class="card">
@@ -71,10 +61,14 @@
                 src="./images/Post-Elbrus.png"
                 alt="Гора Эльбрус"
                 class="card__image"
-              />
+              >
               <div class="card__info">
                 <h2 class="card__name">Гора Эльбрус</h2>
-                <button type="button" class="card__button-like"></button>
+                <button
+                  type="button"
+                  aria-label="Поставить лайк"
+                  class="card__button-like"
+                ></button>
               </div>
             </li>
             <li class="card">
@@ -82,10 +76,14 @@
                 src="./images/Post-Dombay.png"
                 alt="Домбай"
                 class="card__image"
-              />
+              >
               <div class="card__info">
                 <h2 class="card__name">Домбай</h2>
-                <button type="button" class="card__button-like"></button>
+                <button
+                  type="button"
+                  aria-label="Поставить лайк"
+                  class="card__button-like"
+                ></button>
               </div>
             </li>
             <li class="card">
@@ -93,10 +91,14 @@
                 src="./images/Post-Elbrus.png"
                 alt="Гора Эльбрус"
                 class="card__image"
-              />
+              >
               <div class="card__info">
                 <h2 class="card__name">Гора Эльбрус</h2>
-                <button type="button" class="card__button-like"></button>
+                <button
+                  type="button"
+                  aria-label="Поставить лайк"
+                  class="card__button-like"
+                ></button>
               </div>
             </li>
             <li class="card">
@@ -104,10 +106,14 @@
                 src="./images/Post-Dombay.png"
                 alt="Домбай"
                 class="card__image"
-              />
+              >
               <div class="card__info">
                 <h2 class="card__name">Домбай</h2>
-                <button type="button" class="card__button-like"></button>
+                <button
+                  type="button"
+                  aria-label="Поставить лайк"
+                  class="card__button-like"
+                ></button>
               </div>
             </li>
             <li class="card">
@@ -115,10 +121,14 @@
                 src="./images/Post-karachaevsk.png"
                 alt="Карачаевск"
                 class="card__image"
-              />
+              >
               <div class="card__info">
                 <h2 class="card__name">Карачаево-Черкессия</h2>
-                <button type="button" class="card__button-like"></button>
+                <button
+                  type="button"
+                  aria-label="Поставить лайк"
+                  class="card__button-like"
+                ></button>
               </div>
             </li>
           </ul>
@@ -128,7 +138,33 @@
       <footer class="footer">
         <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
       </footer>
+      <!--POP-UP-->
+      <div class="pop-up">
+        <div class="pop-up__container">
+          <button
+            type="button"
+            aria-label="Закрыть"
+            class="pop-up__exit"
+          ></button>
+          <h2 class="pop-up__title">Редактировать профиль</h2>
+          <form name="form" class="form">
+            <input
+              type="text"
+              name="name"
+              class="form__input form__input_info_name"
+              placeholder="Имя"
+            >
+            <input
+              type="text"
+              name="profession"
+              class="form__input form__input_info_profession"
+              placeholder="О себе"
+            >
+            <button type="submit" class="form__button-save">Сохранить</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <script src="./index.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

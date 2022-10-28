@@ -10,12 +10,11 @@
   padding: 25px 22px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 @media screen and (min-width: 466px) {
   .pop-up__container {
-    padding: 34px 36px;
+    padding: 34px 36px 37px;
     max-width: 430px;
   }
 }

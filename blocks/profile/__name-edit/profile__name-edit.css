@@ -1,14 +1,19 @@
 .profile__name-edit {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin: 0 0 14px;
+  justify-content: center;
+  /*gap: 10px;*/
+  margin: 0 0 7px;
   padding: 0;
+  transform: translateX(13px);
 }
 
 @media screen and (min-width: 1024px) {
   .profile__name-edit {
     gap: 18px;
-    margin-bottom: 16px;
+    margin-bottom: 6px;
+    width: 550px;
+    justify-content: flex-start;
+    transform: translateX(0);
   }
 }
