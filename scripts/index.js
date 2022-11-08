@@ -7,14 +7,13 @@ let popupAddCard = document.querySelector(".pop-up_type_add-card");
 let exitPopupAddCard = popupAddCard.querySelector(".pop-up__exit");
 
 //Удаления карточки
- const handleDeleteCard = (event) =>{
-  event.target.closest(".card").remove()
- }
+const handleDeleteCard = (event) => {
+  event.target.closest(".card").remove();
+};
 
- let card = document.querySelector(".card");
+let card = document.querySelector(".card");
 let cardDeleteButton = card.querySelector(".card__button-delete");
-cardDeleteButton.addEventListener("click", handleDeleteCard)
-
+cardDeleteButton.addEventListener("click", handleDeleteCard);
 
 // Находим поля профиля
 let profileName = document.querySelector(".profile__name");
@@ -27,14 +26,14 @@ let jobInput = document.querySelector(".form__input_info_profession");
 let saveButton = document.querySelector(".form__button-save");
 
 // Функция открытия поп-апа
-function openPopup(popup) {
+const openPopup = (popup) => {
   popup.classList.add("pop-up_opened");
-}
+};
 
 // Функция закрытия поп-апа
-function closePopup(popup) {
+const closePopup = (popup) => {
   popup.classList.remove("pop-up_opened");
-}
+};
 
 // Обработчики событии (кликов) для открытия и закрытия поп-апа "редактирования профиля"
 profileEditButton.addEventListener("click", () => {
@@ -55,14 +54,14 @@ exitPopupAddCard.addEventListener("click", () => {
 });
 
 // Обработчик «отправки» формы поп-апа "редактирования профиля", хотя пока она никуда отправляться не будет
-function formSubmitHandler(form) {
+const formSubmitHandler = (form) => {
   form.preventDefault();
 
   profileName.textContent = nameInput.value;
   profileProfession.textContent = jobInput.value;
 
   closePopup(popupEditProfile);
-}
+};
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
 formElement.addEventListener("submit", formSubmitHandler);
