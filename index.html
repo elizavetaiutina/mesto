@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MESTO</title>
-    <link rel="stylesheet" href="./pages/index.css">
+    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="content">
     <div class="page">
       <!--HEADER-->
       <header class="header">
-        <img src="./images/logo.svg" alt="Логотип- Место" class="logo">
+        <img src="./images/logo.svg" alt="Логотип- Место" class="logo" />
       </header>
       <main class="main">
         <!--PROFILE-->
@@ -20,7 +20,7 @@
             src="./images/avatarKusto.jpg"
             alt="Аватар Жак-Ив Кусто"
             class="profile__avatar"
-            >
+          />
           <div class="profile__info">
             <div class="profile__name-edit">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -42,11 +42,16 @@
         <section class="gallery">
           <ul class="gallery__card-list">
             <li class="card">
+              <button
+                type="button"
+                aria-label="Удалить Карточку"
+                class="card__button-delete"
+              ></button>
               <img
                 src="./images/Post-karachaevsk.png"
                 alt="Карачаевск"
                 class="card__image"
-              >
+              />
               <div class="card__info">
                 <h2 class="card__name">Карачаевск</h2>
                 <button
@@ -61,7 +66,7 @@
                 src="./images/Post-Elbrus.png"
                 alt="Гора Эльбрус"
                 class="card__image"
-              >
+              />
               <div class="card__info">
                 <h2 class="card__name">Гора Эльбрус</h2>
                 <button
@@ -76,7 +81,7 @@
                 src="./images/Post-Dombay.png"
                 alt="Домбай"
                 class="card__image"
-              >
+              />
               <div class="card__info">
                 <h2 class="card__name">Домбай</h2>
                 <button
@@ -91,7 +96,7 @@
                 src="./images/Post-Elbrus.png"
                 alt="Гора Эльбрус"
                 class="card__image"
-              >
+              />
               <div class="card__info">
                 <h2 class="card__name">Гора Эльбрус</h2>
                 <button
@@ -106,7 +111,7 @@
                 src="./images/Post-Dombay.png"
                 alt="Домбай"
                 class="card__image"
-              >
+              />
               <div class="card__info">
                 <h2 class="card__name">Домбай</h2>
                 <button
@@ -121,7 +126,7 @@
                 src="./images/Post-karachaevsk.png"
                 alt="Карачаевск"
                 class="card__image"
-              >
+              />
               <div class="card__info">
                 <h2 class="card__name">Карачаево-Черкессия</h2>
                 <button
@@ -138,8 +143,8 @@
       <footer class="footer">
         <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
       </footer>
-      <!--POP-UP-->
-      <div class="pop-up">
+      <!--POP-UP EDIT PROFILE-->
+      <div class="pop-up pop-up_type_edit-profile">
         <div class="pop-up__container">
           <button
             type="button"
@@ -153,17 +158,44 @@
               name="name"
               class="form__input form__input_info_name"
               placeholder="Имя"
-            >
+            />
             <input
               type="text"
               name="profession"
               class="form__input form__input_info_profession"
               placeholder="О себе"
-            >
+            />
             <button type="submit" class="form__button-save">Сохранить</button>
           </form>
         </div>
       </div>
+      <!--POP-UP ADD CARD-->
+      <div class="pop-up pop-up_type_add-card">
+        <div class="pop-up__container">
+          <button
+            type="button"
+            aria-label="Закрыть"
+            class="pop-up__exit"
+          ></button>
+          <h2 class="pop-up__title">Новое место</h2>
+          <form name="form" class="form">
+            <input
+              type="text"
+              name="name-place"
+              class="form__input form__input_info_name-place"
+              placeholder="Название"
+            />
+            <input
+              type="url"
+              name="url-place"
+              class="form__input form__input_info_url-place"
+              placeholder="Ссылка на картинку"
+            />
+            <button type="submit" class="form__button-save">Создать</button>
+          </form>
+        </div>
+      </div>
+      <!--END POP-UP-->
     </div>
     <script src="./scripts/index.js"></script>
   </body>
