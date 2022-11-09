@@ -1,0 +1,30 @@
+.open-card__exit {
+  position: absolute;
+  top: -36px;
+  right: 0;
+  background-image: url(../../../images/Button-popup-exit.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: transparent;
+  min-width: 20px;
+  min-height: 20px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.open-card__exit:hover {
+  opacity: 0.6;
+}
+
+@media screen and (min-width: 768px) {
+  .open-card__exit {
+    width: 32px;
+    height: 32px;
+    top: -40px;
+    right: -40px;
+  }
+}
