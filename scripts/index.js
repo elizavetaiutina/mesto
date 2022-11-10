@@ -1,31 +1,3 @@
-//Массив 6 карточек, загрузку на страницу которых добавляет JavaScript
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 const cardContainer = document.querySelector(".gallery__card-list");
 const popupOpenCard = document.querySelector(".pop-up_type_card-open");
 
@@ -33,12 +5,12 @@ const popupOpenCard = document.querySelector(".pop-up_type_card-open");
 const cardTemplate = document.querySelector(".card-template").content;
 
 // Функция удаления карточки
-function handlerDeleteCard(event) {
+function handleDeleteCard(event) {
   event.target.closest(".card").remove();
 }
 
 // Функция- поставить и убрать лайк
-function handlerLikeCard(event) {
+function handleLikeCard(event) {
   event.target.classList.toggle("card__button-like_status_active");
 }
 
@@ -64,10 +36,10 @@ function generateCard(item) {
   });
 
   const buttonDeleteCard = newCard.querySelector(".card__button-delete");
-  buttonDeleteCard.addEventListener("click", handlerDeleteCard);
+  buttonDeleteCard.addEventListener("click", handleDeleteCard);
 
   const buttonLikeCard = newCard.querySelector(".card__button-like");
-  buttonLikeCard.addEventListener("click", handlerLikeCard);
+  buttonLikeCard.addEventListener("click", handleLikeCard);
 
   return newCard;
 }
@@ -84,12 +56,12 @@ initialCards.forEach(function (item) {
 
 // POP-UP
 // Находим кнопки открытия и закрытия поп-апа
-const profileEditButton = document.querySelector(".profile__button-edit");
-const cardAddButton = document.querySelector(".profile__button-add");
+const buttonEditProfile = document.querySelector(".profile__button-edit");
+const buttonAddCard = document.querySelector(".profile__button-add");
 const popupEditProfile = document.querySelector(".pop-up_type_edit-profile");
-const exitPopupEditProfile = popupEditProfile.querySelector(".pop-up__exit");
+const buttonExitPopupEditProfile = popupEditProfile.querySelector(".pop-up__exit");
 const popupAddCard = document.querySelector(".pop-up_type_add-card");
-const exitPopupAddCard = popupAddCard.querySelector(".pop-up__exit");
+const buttonExitPopupAddCard = popupAddCard.querySelector(".pop-up__exit");
 
 // Находим поля профиля на гл странице
 const profileName = document.querySelector(".profile__name");
@@ -99,7 +71,6 @@ const profileProfession = document.querySelector(".profile__profession");
 const formEditProfile = document.querySelector(".form_type_edit-profile");
 const nameInput = formEditProfile.querySelector(".form__input_info_name");
 const jobInput = formEditProfile.querySelector(".form__input_info_profession");
-const saveButton = formEditProfile.querySelector(".form__button-save");
 
 // Функция открытия поп-апа
 const openPopup = (popup) => {
@@ -112,12 +83,12 @@ const closePopup = (popup) => {
 };
 
 // Обработчики событии (кликов) для открытия и закрытия поп-апа "редактирование профиля"
-profileEditButton.addEventListener("click", () => {
+buttonEditProfile.addEventListener("click", () => {
   openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileProfession.textContent;
 });
-exitPopupEditProfile.addEventListener("click", () => {
+buttonExitPopupEditProfile.addEventListener("click", () => {
   closePopup(popupEditProfile);
 });
 
@@ -140,24 +111,19 @@ const inputUrlCard = formAddCard.querySelector(".form__input_info_url-place");
 
 // Обработчики событии (кликов) для открытия и закрытия поп-апа "добавления карточки"
 
-function deleteValueInput() {
-  inputNameCard.value = "";
-  inputUrlCard.value = "";
-}
-
-cardAddButton.addEventListener("click", () => {
+buttonAddCard.addEventListener("click", () => {
   openPopup(popupAddCard);
 });
-exitPopupAddCard.addEventListener("click", () => {
+buttonExitPopupAddCard.addEventListener("click", () => {
   closePopup(popupAddCard);
-  deleteValueInput();
+  formAddCard.reset();
 });
 
 // Обработчик «отправки» формы поп-апа "добавления карточки"
 const formAddCardSubmitHandler = (form) => {
   form.preventDefault();
   renderCard({ name: inputNameCard.value, link: inputUrlCard.value });
-  deleteValueInput();
+  form.target.reset();
   closePopup(popupAddCard);
 };
 
@@ -165,7 +131,7 @@ const formAddCardSubmitHandler = (form) => {
 formAddCard.addEventListener("submit", formAddCardSubmitHandler);
 
 // Обработчики событии (кликов) для закрытия поп-апа "открытие карточки"
-const exitPopupOpenCard = popupOpenCard.querySelector(".open-card__exit");
-exitPopupOpenCard.addEventListener("click", () => {
+const buttonExitPopupOpenCard = popupOpenCard.querySelector(".open-card__exit");
+buttonExitPopupOpenCard.addEventListener("click", () => {
   closePopup(popupOpenCard);
 });
