@@ -7,7 +7,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  /*display: none;*/
   display: flex;
+  visibility: hidden;
+  transition: visibility 0s, opacity 0.3s linear;
+  opacity: 0;
   z-index: 1;
 }
