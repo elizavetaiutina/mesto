@@ -30,9 +30,21 @@ const cardContainer = document.querySelector(".gallery__card-list"); //конт�
 //const formAddCard = document.querySelector(".form"); //форма создания новой карточки
 //const inputNameCard = formAddCard.querySelector(".form__input_info_name-place"); //поле ввода названия карточки
 //const inputUrlCard = formAddCard.querySelector(".form__input_info_url-place"); //поле ввода ссылки
+let popupOpenCard = document.querySelector(".pop-up_type_card-open");
+
 
 //Шаблон template для карт
-const cardTemplate = document.querySelector(".card-template").content; //.querySelector(".card");
+const cardTemplate = document.querySelector(".card-template").content;
+
+// Функция удаления карточки
+function handlerDeleteCard(event) {
+  event.target.closest(".card").remove();
+}
+
+// Функция- поставить и убрать лайк
+function handlerLikeCard(event) {
+  event.target.classList.toggle("card__button-like_status_active");
+}
 
 // Создание карточки (template)
 
@@ -45,6 +57,21 @@ function generateCard(item) {
   const urlCard = newCard.querySelector(".card__image");
   urlCard.src = item.link;
   urlCard.alt = item.name;
+
+  urlCard.addEventListener("click", () => {
+    openPopup(popupOpenCard);
+    let imageOpenCard = document.querySelector(".open-card__image");
+    let nameOpenCard = document.querySelector(".open-card__name");
+    imageOpenCard.src = urlCard.src;
+    imageOpenCard.alt = nameCard.textContent;
+    nameOpenCard.textContent = nameCard.textContent;    
+  });
+
+  let buttonDeleteCard = newCard.querySelector(".card__button-delete");
+  buttonDeleteCard.addEventListener("click", handlerDeleteCard);
+
+  let buttonLikeCard = newCard.querySelector(".card__button-like");
+  buttonLikeCard.addEventListener("click", handlerLikeCard);
 
   return newCard;
 }
@@ -59,11 +86,7 @@ initialCards.forEach(function (item) {
   renderCard(item);
 });
 
-
-
-
-
-
+// POP-UP
 // Находим кнопки открытия и закрытия поп-апа
 let profileEditButton = document.querySelector(".profile__button-edit");
 let cardAddButton = document.querySelector(".profile__button-add");
@@ -72,20 +95,11 @@ let exitPopupEditProfile = popupEditProfile.querySelector(".pop-up__exit");
 let popupAddCard = document.querySelector(".pop-up_type_add-card");
 let exitPopupAddCard = popupAddCard.querySelector(".pop-up__exit");
 
-//Удаления карточки
-const handleDeleteCard = (event) => {
-  event.target.closest(".card").remove();
-};
-
-let card = document.querySelector(".card");
-let cardDeleteButton = card.querySelector(".card__button-delete");
-cardDeleteButton.addEventListener("click", handleDeleteCard);
-
-// Находим поля профиля
+// Находим поля профиля на гл странице
 let profileName = document.querySelector(".profile__name");
 let profileProfession = document.querySelector(".profile__profession");
 
-// Находим форму и поля формы
+// Находим форму и поля формы редактирования профиля
 let formElement = document.querySelector(".form");
 let nameInput = document.querySelector(".form__input_info_name");
 let jobInput = document.querySelector(".form__input_info_profession");
@@ -101,7 +115,7 @@ const closePopup = (popup) => {
   popup.classList.remove("pop-up_opened");
 };
 
-// Обработчики событии (кликов) для открытия и закрытия поп-апа "редактирования профиля"
+// Обработчики событии (кликов) для открытия и закрытия поп-апа "редактирование профиля"
 profileEditButton.addEventListener("click", () => {
   openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
@@ -109,14 +123,6 @@ profileEditButton.addEventListener("click", () => {
 });
 exitPopupEditProfile.addEventListener("click", () => {
   closePopup(popupEditProfile);
-});
-
-// Обработчики событии (кликов) для открытия и закрытия поп-апа "добавления карточек"
-cardAddButton.addEventListener("click", () => {
-  openPopup(popupAddCard);
-});
-exitPopupAddCard.addEventListener("click", () => {
-  closePopup(popupAddCard);
 });
 
 // Обработчик «отправки» формы поп-апа "редактирования профиля", хотя пока она никуда отправляться не будет
@@ -128,6 +134,19 @@ const formEditProfileSubmitHandler = (form) => {
 
   closePopup(popupEditProfile);
 };
-
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
 formElement.addEventListener("submit", formEditProfileSubmitHandler);
+
+// Обработчики событии (кликов) для открытия и закрытия поп-апа "добавления карточек"
+cardAddButton.addEventListener("click", () => {
+  openPopup(popupAddCard);
+});
+exitPopupAddCard.addEventListener("click", () => {
+  closePopup(popupAddCard);
+});
+
+// Обработчики событии (кликов) для закрытия поп-апа "открытие карточки"
+let exitPopupOpenCard = popupOpenCard.querySelector(".open-card__exit");
+exitPopupOpenCard.addEventListener("click", () => {
+  closePopup(popupOpenCard);
+});

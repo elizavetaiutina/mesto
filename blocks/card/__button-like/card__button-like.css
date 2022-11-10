@@ -3,6 +3,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  opacity: 1;
   width: 22px;
   height: 19px;
   border: none;
@@ -14,10 +15,6 @@
 }
 
 .card__button-like:hover {
-  opacity: 0.5;
-}
-
-.card__button-like:focus {
   opacity: 0.5;
 }
 
