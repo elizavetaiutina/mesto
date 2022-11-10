@@ -26,12 +26,8 @@ const initialCards = [
   },
 ];
 
-const cardContainer = document.querySelector(".gallery__card-list"); //контейнер для карт
-//const formAddCard = document.querySelector(".form"); //форма создания новой карточки
-//const inputNameCard = formAddCard.querySelector(".form__input_info_name-place"); //поле ввода названия карточки
-//const inputUrlCard = formAddCard.querySelector(".form__input_info_url-place"); //поле ввода ссылки
-let popupOpenCard = document.querySelector(".pop-up_type_card-open");
-
+const cardContainer = document.querySelector(".gallery__card-list");
+const popupOpenCard = document.querySelector(".pop-up_type_card-open");
 
 //Шаблон template для карт
 const cardTemplate = document.querySelector(".card-template").content;
@@ -60,17 +56,17 @@ function generateCard(item) {
 
   urlCard.addEventListener("click", () => {
     openPopup(popupOpenCard);
-    let imageOpenCard = document.querySelector(".open-card__image");
-    let nameOpenCard = document.querySelector(".open-card__name");
+    const imageOpenCard = document.querySelector(".open-card__image");
+    const nameOpenCard = document.querySelector(".open-card__name");
     imageOpenCard.src = urlCard.src;
     imageOpenCard.alt = nameCard.textContent;
-    nameOpenCard.textContent = nameCard.textContent;    
+    nameOpenCard.textContent = nameCard.textContent;
   });
 
-  let buttonDeleteCard = newCard.querySelector(".card__button-delete");
+  const buttonDeleteCard = newCard.querySelector(".card__button-delete");
   buttonDeleteCard.addEventListener("click", handlerDeleteCard);
 
-  let buttonLikeCard = newCard.querySelector(".card__button-like");
+  const buttonLikeCard = newCard.querySelector(".card__button-like");
   buttonLikeCard.addEventListener("click", handlerLikeCard);
 
   return newCard;
@@ -88,22 +84,22 @@ initialCards.forEach(function (item) {
 
 // POP-UP
 // Находим кнопки открытия и закрытия поп-апа
-let profileEditButton = document.querySelector(".profile__button-edit");
-let cardAddButton = document.querySelector(".profile__button-add");
-let popupEditProfile = document.querySelector(".pop-up_type_edit-profile");
-let exitPopupEditProfile = popupEditProfile.querySelector(".pop-up__exit");
-let popupAddCard = document.querySelector(".pop-up_type_add-card");
-let exitPopupAddCard = popupAddCard.querySelector(".pop-up__exit");
+const profileEditButton = document.querySelector(".profile__button-edit");
+const cardAddButton = document.querySelector(".profile__button-add");
+const popupEditProfile = document.querySelector(".pop-up_type_edit-profile");
+const exitPopupEditProfile = popupEditProfile.querySelector(".pop-up__exit");
+const popupAddCard = document.querySelector(".pop-up_type_add-card");
+const exitPopupAddCard = popupAddCard.querySelector(".pop-up__exit");
 
 // Находим поля профиля на гл странице
-let profileName = document.querySelector(".profile__name");
-let profileProfession = document.querySelector(".profile__profession");
+const profileName = document.querySelector(".profile__name");
+const profileProfession = document.querySelector(".profile__profession");
 
 // Находим форму и поля формы редактирования профиля
-let formElement = document.querySelector(".form");
-let nameInput = document.querySelector(".form__input_info_name");
-let jobInput = document.querySelector(".form__input_info_profession");
-let saveButton = document.querySelector(".form__button-save");
+const formEditProfile = document.querySelector(".form_type_edit-profile");
+const nameInput = formEditProfile.querySelector(".form__input_info_name");
+const jobInput = formEditProfile.querySelector(".form__input_info_profession");
+const saveButton = formEditProfile.querySelector(".form__button-save");
 
 // Функция открытия поп-апа
 const openPopup = (popup) => {
@@ -135,18 +131,41 @@ const formEditProfileSubmitHandler = (form) => {
   closePopup(popupEditProfile);
 };
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
-formElement.addEventListener("submit", formEditProfileSubmitHandler);
+formEditProfile.addEventListener("submit", formEditProfileSubmitHandler);
 
-// Обработчики событии (кликов) для открытия и закрытия поп-апа "добавления карточек"
+// Находим форму и поля формы добавление картинки
+const formAddCard = document.querySelector(".form_type_add-card");
+const inputNameCard = formAddCard.querySelector(".form__input_info_name-place");
+const inputUrlCard = formAddCard.querySelector(".form__input_info_url-place");
+
+// Обработчики событии (кликов) для открытия и закрытия поп-апа "добавления карточки"
+
+function deleteValueInput() {
+  inputNameCard.value = "";
+  inputUrlCard.value = "";
+}
+
 cardAddButton.addEventListener("click", () => {
   openPopup(popupAddCard);
 });
 exitPopupAddCard.addEventListener("click", () => {
   closePopup(popupAddCard);
+  deleteValueInput();
 });
 
+// Обработчик «отправки» формы поп-апа "добавления карточки"
+const formAddCardSubmitHandler = (form) => {
+  form.preventDefault();
+  renderCard({ name: inputNameCard.value, link: inputUrlCard.value });
+  deleteValueInput();
+  closePopup(popupAddCard);
+};
+
+// Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
+formAddCard.addEventListener("submit", formAddCardSubmitHandler);
+
 // Обработчики событии (кликов) для закрытия поп-апа "открытие карточки"
-let exitPopupOpenCard = popupOpenCard.querySelector(".open-card__exit");
+const exitPopupOpenCard = popupOpenCard.querySelector(".open-card__exit");
 exitPopupOpenCard.addEventListener("click", () => {
   closePopup(popupOpenCard);
 });

@@ -5,7 +5,7 @@
   color: #000000;
   margin: 0;
   padding: 0;
-  max-width: 219px;
+  max-width: calc(100% - 35px);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
