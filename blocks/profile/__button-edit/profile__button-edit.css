@@ -3,13 +3,14 @@
   border: 1px solid #ffffff;
   margin: 0;
   padding: 0;
-  background-image: url(../../../images/Vector.svg);
+  background-image: url(../../../images/Button-Edit.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 7.5px 7.5px;
   background-color: #000000;
   width: 18px;
   height: 18px;
+  outline: none;
   /*aspect-ratio: 1 / 1;*/
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
