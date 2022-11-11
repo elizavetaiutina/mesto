@@ -59,7 +59,8 @@ initialCards.forEach(function (item) {
 const buttonEditProfile = document.querySelector(".profile__button-edit");
 const buttonAddCard = document.querySelector(".profile__button-add");
 const popupEditProfile = document.querySelector(".pop-up_type_edit-profile");
-const buttonExitPopupEditProfile = popupEditProfile.querySelector(".pop-up__exit");
+const buttonExitPopupEditProfile =
+  popupEditProfile.querySelector(".pop-up__exit");
 const popupAddCard = document.querySelector(".pop-up_type_add-card");
 const buttonExitPopupAddCard = popupAddCard.querySelector(".pop-up__exit");
 
