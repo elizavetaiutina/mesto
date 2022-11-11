@@ -93,7 +93,7 @@ buttonExitPopupEditProfile.addEventListener("click", () => {
 });
 
 // Обработчик «отправки» формы поп-апа "редактирования профиля", хотя пока она никуда отправляться не будет
-const formEditProfileSubmitHandler = (form) => {
+const handleSubmitFormEditProfile = (form) => {
   form.preventDefault();
 
   profileName.textContent = nameInput.value;
@@ -102,7 +102,7 @@ const formEditProfileSubmitHandler = (form) => {
   closePopup(popupEditProfile);
 };
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
-formEditProfile.addEventListener("submit", formEditProfileSubmitHandler);
+formEditProfile.addEventListener("submit", handleSubmitFormEditProfile);
 
 // Находим форму и поля формы добавление картинки
 const formAddCard = document.querySelector(".form_type_add-card");
@@ -120,7 +120,7 @@ buttonExitPopupAddCard.addEventListener("click", () => {
 });
 
 // Обработчик «отправки» формы поп-апа "добавления карточки"
-const formAddCardSubmitHandler = (form) => {
+const handleSubmitFormAddCard = (form) => {
   form.preventDefault();
   renderCard({ name: inputNameCard.value, link: inputUrlCard.value });
   form.target.reset();
@@ -128,7 +128,7 @@ const formAddCardSubmitHandler = (form) => {
 };
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
-formAddCard.addEventListener("submit", formAddCardSubmitHandler);
+formAddCard.addEventListener("submit", handleSubmitFormAddCard);
 
 // Обработчики событии (кликов) для закрытия поп-апа "открытие карточки"
 const buttonExitPopupOpenCard = popupOpenCard.querySelector(".open-card__exit");
