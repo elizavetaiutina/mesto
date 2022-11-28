@@ -1,8 +1,8 @@
-.form__input-error {
-  min-height: 28px;
+.form__span-error {
+  min-height: 30px;
   /*border: 1px solid red;*/
   width: 100%;
-  margin: 2px 0 0;
+  margin: 2px 0 2px;
   padding: 0;
   font-weight: 400;
   font-size: 12px;
@@ -10,8 +10,4 @@
   color: #ff0000;
   opacity: 0;
   transition: opacity 0.3s linear;
-}
-
-.form__input-error_active {
-  opacity: 1;
 }
