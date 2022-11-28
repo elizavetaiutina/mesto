@@ -134,22 +134,6 @@ const handleSubmitFormAddCard = (form) => {
 formAddCard.addEventListener("submit", handleSubmitFormAddCard);
 
 // Обработчики закрытия поп-апа "открытие карточки" по клавише ESC
-//document.addEventListener("keydown", function (evt) {
- // if (evt.key === "Escape") {
- //   closePopup(popupOpenCard);
- //   closePopup(popupAddCard);
- //   closePopup(popupEditProfile);
- // }
-//});
-
-const popups = Array.from(document.querySelectorAll(".popup"));
-popups.forEach((pop) => {
-  pop.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
-      closePopup(pop);
-    }
-  });
-});
 document.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
     closePopup(popupOpenCard);

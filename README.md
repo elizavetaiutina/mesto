@@ -1,7 +1,7 @@
 # Проект: MESTO
 
-### Макет:
-[https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1]
+### GitHub Pages:
+[https://elizavetaiutina.github.io/mesto/]
 
 ---
 
@@ -28,7 +28,3 @@ Flexbox вёрстка, Grid layout вёрстка, создана файлов�
 В дальнейшем планируется: работать над данным проектом в течении следующих спринтов.
 
 ---
-
-## GitHub Pages:
-[https://elizavetaiutina.github.io/mesto/]
-###
