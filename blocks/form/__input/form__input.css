@@ -10,11 +10,17 @@
   line-height: 17px;
   color: #000000;
 }
-
+/*
 .form__input:not(:first-child) {
   margin-top: 30px;
-}
+}*/
 
 .form__input:focus {
   outline: none;
 }
+
+.form__input_type_error {
+  border-bottom: 1px solid rgba(255, 0, 0, 1);
+}
+
+

@@ -22,12 +22,15 @@
 @import url(../blocks/pop-up/__container/pop-up__container.css);
 @import url(../blocks/pop-up/__title/pop-up__title.css);
 @import url(../blocks/form/form.css);
+@import url(../blocks/form/__set/form__set.css);
+@import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__input/_info/form__input_info_name.css);
 @import url(../blocks/form/__input/_info/form__input_info_profession.css);
 @import url(../blocks/form/__input/_info/form__input_info_name-place.css);
 @import url(../blocks/form/__input/_info/form__input_info_url-place.css);
 @import url(../blocks/form/__button-save/form__button-save.css);
+@import url(../blocks/form/__button-save/_disabled/form__button-save_disabled.css);
 
 /*SECTION - POP-UP OPEN CARD*/
 @import url(../blocks/pop-up/_type/pop-up_type_card-open.css);

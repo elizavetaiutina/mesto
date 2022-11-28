@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 430px;
   min-height: 46px;
-  margin: 45px 0 0;
+  margin: 15px 0 0;
   padding: 0;
   background: #000000;
   border: none;
@@ -22,7 +22,7 @@
 
 @media screen and (min-width: 490px) {
   .form__button-save {
-    margin-top: 48px;
+    margin-top: 20px;
     min-height: 50px;
     font-size: 18px;
     line-height: 22px;

@@ -1,6 +1,7 @@
-.form {
+.form__set{
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
+  border: none;
 }
