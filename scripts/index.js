@@ -1,5 +1,7 @@
 const cardContainer = document.querySelector(".gallery__card-list");
 const popupOpenCard = document.querySelector(".pop-up_type_card-open");
+const imageOpenCard = document.querySelector(".open-card__image");
+const nameOpenCard = document.querySelector(".open-card__name");
 
 //Шаблон template для карт
 const cardTemplate = document.querySelector(".card-template").content;
@@ -22,15 +24,13 @@ function generateCard(item) {
   const nameCard = newCard.querySelector(".card__name");
   nameCard.textContent = item.name;
 
-  const urlCard = newCard.querySelector(".card__image");
-  urlCard.src = item.link;
-  urlCard.alt = item.name;
+  const cardImage = newCard.querySelector(".card__image");
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
 
-  urlCard.addEventListener("click", () => {
+  cardImage.addEventListener("click", () => {
     openPopup(popupOpenCard);
-    const imageOpenCard = document.querySelector(".open-card__image");
-    const nameOpenCard = document.querySelector(".open-card__name");
-    imageOpenCard.src = urlCard.src;
+    imageOpenCard.src = cardImage.src;
     imageOpenCard.alt = nameCard.textContent;
     nameOpenCard.textContent = nameCard.textContent;
   });
@@ -44,15 +44,11 @@ function generateCard(item) {
   return newCard;
 }
 
-// Добавление карточки
+// Проходим по массиву и создаем для каждого элемента добавление карточки
 function renderCard(item) {
   cardContainer.prepend(generateCard(item));
 }
-
-// Проходим по массиву и создаем для каждого элемента добавление карточки
-initialCards.forEach(function (item) {
-  renderCard(item);
-});
+initialCards.forEach(renderCard);
 
 // POP-UP
 // Находим кнопки открытия и закрытия поп-апа
@@ -67,7 +63,7 @@ const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
 
 // Находим форму и поля формы редактирования профиля
-const formEditProfile = document.querySelector(".form_type_edit-profile");
+const formEditProfile = document.forms["form-edit-profile"];
 const nameInput = formEditProfile.querySelector(".form__input_info_name");
 const jobInput = formEditProfile.querySelector(".form__input_info_profession");
 
@@ -98,9 +94,8 @@ const openPopup = (popup) => {
 // Функция закрытия поп-апа
 const closePopup = (popup) => {
   popup.classList.remove("pop-up_opened");
-  document.addEventListener("keydown", handleClosePopupEscape);
+  document.removeEventListener("keydown", handleClosePopupEscape);
   popup.removeEventListener("click", handleClosePopup);
-  formAddCard.reset();
 };
 
 // Обработчики событии (кликов) для открытия поп-апа "редактирование профиля"
@@ -123,9 +118,9 @@ const handleSubmitFormEditProfile = (form) => {
 formEditProfile.addEventListener("submit", handleSubmitFormEditProfile);
 
 // Находим форму и поля формы добавление картинки
-const formAddCard = document.querySelector(".form_type_add-card");
+const formAddCard = document.forms["form-add-card"];
 const inputNameCard = formAddCard.querySelector(".form__input_info_name-place");
-const inputUrlCard = formAddCard.querySelector(".form__input_info_url-place");
+const inputCardImage = formAddCard.querySelector(".form__input_info_url-place");
 
 // Обработчики событии (кликов) для открытия поп-апа "добавления карточки"
 buttonAddCard.addEventListener("click", () => {
@@ -133,10 +128,10 @@ buttonAddCard.addEventListener("click", () => {
 });
 
 // Обработчик «отправки» формы поп-апа "добавления карточки"
-const handleSubmitFormAddCard = (form) => {
-  form.preventDefault();
-  renderCard({ name: inputNameCard.value, link: inputUrlCard.value });
-  form.target.reset();
+const handleSubmitFormAddCard = (event) => {
+  event.preventDefault();
+  renderCard({ name: inputNameCard.value, link: inputCardImage.value });
+  event.target.reset();
   closePopup(popupAddCard);
 };
 

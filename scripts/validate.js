@@ -51,6 +51,11 @@ const setEventListeners = (formElement, objectValidation) => {
     objectValidation.submitButtonSelector
   );
   toggleButtonState(inputList, buttonForm, objectValidation);
+  formElement.addEventListener("reset", () => {
+    setTimeout(() => {
+      toggleButtonState(inputList, buttonForm, objectValidation);
+    }, 0);
+  });
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
