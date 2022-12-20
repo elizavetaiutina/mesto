@@ -1,5 +1,5 @@
-//Массив 6 карточек, загрузку на страницу которых добавляет JavaScript
-const initialCards = [
+//Массив 6 карточек, загрузку на страницу которых осуществляет JavaScript
+export const initialCards = [
   {
     name: "Архыз",
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",

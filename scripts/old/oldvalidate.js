@@ -63,6 +63,9 @@ const setEventListeners = (formElement, objectValidation) => {
 
       toggleButtonState(inputList, buttonForm, objectValidation);
     });
+    buttonEditProfile.addEventListener("click", () => {
+      isValid(formElement, inputElement, objectValidation);
+    });
   });
 };
 
