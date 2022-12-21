@@ -4,4 +4,7 @@
   object-fit: cover;
   object-position: center;
   cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  box-sizing: border-box;
 }

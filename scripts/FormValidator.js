@@ -31,8 +31,8 @@ class FormValidator {
     this._errorElement.textContent = "";
   };
 
-  // Метод, который проверяет валидность поля
-  _isValid = (inputElement) => {
+  // Метод, который проверяет валидность поля и управляет состоянием поля с ошибкой
+  _toggleInputErrorState = (inputElement) => {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
@@ -50,7 +50,7 @@ class FormValidator {
 
   _toggleButtonState = () => {
     // Если есть хотя бы один невалидный инпут делаем кнопку неактивной иначе активной
-    if (this._hasInvalidInput(this._inputList)) {
+    if (this._hasInvalidInput()) {
       this._buttonForm.classList.add(this._inactiveButtonClass);
       this._buttonForm.setAttribute("disabled", true);
     } else {
@@ -66,18 +66,18 @@ class FormValidator {
     );
 
     this._buttonForm = this._form.querySelector(this._submitButtonSelector);
-    this._toggleButtonState(this._inputList, this._buttonForm);
+    this._toggleButtonState();
     // кнопка после самбита (точнее сбора данных в полях)
     this._form.addEventListener("reset", () => {
       setTimeout(() => {
-        this._toggleButtonState(this._inputList, this._buttonForm);
+        this._toggleButtonState();
       }, 0);
     });
 
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
-        this._isValid(inputElement);
-        this._toggleButtonState(this._inputList, this._buttonForm);
+        this._toggleInputErrorState(inputElement);
+        this._toggleButtonState();
       });
     });
   };

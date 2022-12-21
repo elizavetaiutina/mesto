@@ -6,17 +6,14 @@
 содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.
 Для каждой карточки создайте экземпляр класса Card.*/
 
-import { openPopup } from "./utility.js";
-import { popupOpenCard } from "./consts.js";
-
 class Card {
-  constructor(data, templateSelector, openPopup, popupOpenCard) {
+  constructor(data, templateSelector, handleOpenPopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this._openPopup = openPopup;
-    this._popupOpenCard = popupOpenCard;
+    this._handleOpenPopup = handleOpenPopup;
   }
+
   //методы
 
   // Получение шаблона карты
@@ -31,60 +28,39 @@ class Card {
 
   // Навешивание слушателей
   _setEventListeners() {
-    this._element
-      .querySelector(".card__button-like")
-      .addEventListener("click", () => {
-        this._handleLikeCard();
-      });
-    this._element
-      .querySelector(".card__button-delete")
-      .addEventListener("click", () => {
-        this._handleDeleteCard();
-      });
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this._handlePopupCard();
-      });
+    this._buttonLike.addEventListener("click", () => {
+      this._handleLikeCard();
+    });
+    this._buttonDelete.addEventListener("click", () => {
+      this._handleDeleteCard();
+    });
+    this._imageCard.addEventListener("click", () => {
+      this._handleOpenPopup(this._name, this._link);
+    });
   }
 
-  // Метод на открытие POP-UP карточки
-  _handlePopupCard() {
-    openPopup(popupOpenCard);
-    popupOpenCard.querySelector(".open-card__image").src =
-      this._element.querySelector(".card__image").src;
-    popupOpenCard.querySelector(".open-card__image").alt =
-      this._element.querySelector(".card__name").textContent;
-    popupOpenCard.querySelector(".open-card__name").textContent =
-      this._element.querySelector(".card__name").textContent;
-  }
-
-  // Метод поставить и убрать лайк
   _handleLikeCard() {
-    this._element
-      .querySelector(".card__button-like")
-      .classList.toggle("card__button-like_status_active");
+    this._buttonLike.classList.toggle("card__button-like_status_active");
   }
 
-  // Метод удаления карточки
   _handleDeleteCard() {
     this._element.remove();
     this._element = null;
-    /*this._element
-      .querySelector(".card__button-delete")
-      .closest(".card")
-      .remove();*/
   }
 
   // Вставит данные в разметку и подготовит карточку к публикации
   generateCard() {
     this._element = this._getTemplate();
+    this._buttonLike = this._element.querySelector(".card__button-like");
+    this._buttonDelete = this._element.querySelector(".card__button-delete");
+    this._imageCard = this._element.querySelector(".card__image");
+    this._titleCard = this._element.querySelector(".card__name");
 
     this._setEventListeners();
 
-    this._element.querySelector(".card__image").src = this._link;
-    this._element.querySelector(".card__image").alt = this._name;
-    this._element.querySelector(".card__name").textContent = this._name;
+    this._imageCard.src = this._link;
+    this._imageCard.alt = this._name;
+    this._titleCard.textContent = this._name;
 
     return this._element;
   }
