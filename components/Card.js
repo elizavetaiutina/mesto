@@ -1,20 +1,10 @@
-/*
-Создайте класс Card, который создаёт карточку с текстом и ссылкой на изображение:
-принимает в конструктор её данные и селектор её template-элемента;
-содержит приватные методы, которые работают с разметкой, устанавливают слушателей событий;
-содержит приватные методы для каждого обработчика;
-содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.
-Для каждой карточки создайте экземпляр класса Card.*/
-
-class Card {
-  constructor(data, templateSelector, handleOpenPopup) {
+export default class Card {
+  constructor({ data, templateSelector, handleCardClick }) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this._handleOpenPopup = handleOpenPopup;
+    this._handleCardClick = handleCardClick;
   }
-
-  //методы
 
   // Получение шаблона карты
   _getTemplate() {
@@ -35,7 +25,7 @@ class Card {
       this._handleDeleteCard();
     });
     this._imageCard.addEventListener("click", () => {
-      this._handleOpenPopup(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
   }
 
@@ -65,5 +55,3 @@ class Card {
     return this._element;
   }
 }
-
-export { Card };

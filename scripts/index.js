@@ -1,4 +1,4 @@
-import { initialCards, objectValidation } from "./consts.js";
+import { initialCards, objectValidation } from "../utils/constants.js";
 
 import {
   popupOpenCard,
@@ -17,104 +17,139 @@ import {
   formAddCard,
   inputNameCard,
   inputCardImage,
-} from "./elements.js";
+} from "../utils/elements.js";
 
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import Section from "../components/Section.js";
+import Card from "../components/Card.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import FormValidator from "../components/FormValidator.js";
 
-// ПОП-АПЫ
+/* ---------- Popup "Изменение данных профиля" ---------- */
+const newPopupProfile = new PopupWithForm({
+  selectorPopup: popupEditProfile,
+  handleFormSubmit: () => {},
+});
 
-// Функция ОТКРЫТИЯ попапа
-const openPopup = (popup) => {
-  popup.classList.add("pop-up_opened");
-  popup.addEventListener("click", handleClosePopup);
-  document.addEventListener("keydown", handleClosePopupEscape);
-};
+newPopupProfile.setEventListeners();
 
-// Функция обрабочтик закрытия попапа по клику на крестик и оверлэй
-function handleClosePopup(event) {
-  const isOverlay = event.target.classList.contains("pop-up_opened");
-  const isClose = event.target.classList.contains("pop-up__exit");
-  if (isOverlay || isClose) {
-    closePopup(event.currentTarget);
-  }
-}
+buttonEditProfile.addEventListener("click", () => {
+  newPopupProfile.open();
+});
 
-// Функция обработчик закрытия поп-апа по клавише ESC
-function handleClosePopupEscape(event) {
-  if (event.key === "Escape") {
-    const popup = document.querySelector(".pop-up_opened");
-    closePopup(popup);
-  }
-}
+/* ---------- Popup "Добавление карточки" ---------- */
+const newPopupAddCard = new PopupWithForm({
+  selectorPopup: popupAddCard,
+  handleFormSubmit: (event) => {
+    event.preventDefault();
+    const objNewCard = newPopupAddCard._getInputValues();
 
-// Функция ЗАКРЫТИЯ поп-апа
-const closePopup = (popup) => {
-  popup.classList.remove("pop-up_opened");
-  document.removeEventListener("keydown", handleClosePopupEscape);
-  popup.removeEventListener("click", handleClosePopup);
-};
+    const newCard = new Card({
+      data: objNewCard,
+      templateSelector: ".card-template",
+      handleCardClick: () => {
+        newPopupOpenCard.open(item);
+      },
+    });
+    cardContainer.prepend(newCard.generateCard());
+    newPopupAddCard.close();
+  },
+});
 
+newPopupAddCard.setEventListeners();
+
+buttonAddCard.addEventListener("click", () => {
+  newPopupAddCard.open();
+});
+/*
+const newPopupAddCard = new PopupWithForm({
+  selectorPopup: popupAddCard,
+  handleFormSubmit: (formData) => {
+    const card = new Section(
+      {
+        data: [formData],
+        renderer: (item) => {
+          const newCCard = new Card({
+            data: item,
+            templateSelector: ".card-template",
+            handleCardClick: () => {
+              newPopupOpenCard.open(item);
+            },
+          });
+          console.log(newCCard);
+          cardList.addItem(newCCard.generateCard());
+        },
+      },
+      cardContainer
+    );
+  },
+});
+*/
+/*
+const newPopupAddCard = new PopupWithForm({
+  selectorPopup: popupAddCard,
+  handleFormSubmit: (formData) => {},
+});
+*/
+
+/* ---------- Popup "Увеличеная карточка" ---------- */
+const newPopupOpenCard = new PopupWithImage(popupOpenCard);
+newPopupOpenCard.setEventListeners();
+/*
 // Функция-обработчик открытие попапа увеличенной картинки карты (колбэк при клике на картинку)
 function handleOpenPopup(name, link) {
   imagePopupOpenCard.src = link;
   imagePopupOpenCard.alt = name;
   namePopupOpenCard.textContent = name;
-  openPopup(popupOpenCard);
-}
-
+  //openPopup(popupOpenCard);
+  newPopupOpenCard.open();
+}*/
+/*
 // POPUP "редактирование профиля" - слушатели на открытие и событие сабмит
 buttonEditProfile.addEventListener("click", () => {
-  openPopup(popupEditProfile);
+  //openPopup(popupEditProfile);
+  newPopupProfile.open();
   nameInput.value = profileName.textContent;
   jobInput.value = profileProfession.textContent;
-});
-
+});*/
+/*
 const handleSubmitFormEditProfile = (form) => {
   form.preventDefault();
 
   profileName.textContent = nameInput.value;
   profileProfession.textContent = jobInput.value;
 
-  closePopup(popupEditProfile);
+  //closePopup(popupEditProfile);
+  newPopupProfile.close();
 };
 
 formEditProfile.addEventListener("submit", handleSubmitFormEditProfile);
+*/
 
-// POPUP "добавления карточки" - слушатели на открытие и событие сабмит
-buttonAddCard.addEventListener("click", () => {
-  openPopup(popupAddCard);
-});
+/* ---------- отрисовываем карточки при загрузке страницы ---------- */
 
-// Создание и добавлление карты в ленту
-const createCard = (item, selectorTemplate, handleOpenPopup) => {
-  const newCard = new Card(item, selectorTemplate, handleOpenPopup);
-  cardContainer.prepend(newCard.generateCard());
-};
+const cardListArray = new Section(
+  {
+    data: initialCards,
+    renderer: (item) => {
+      const card = new Card({
+        data: item,
+        templateSelector: ".card-template",
+        handleCardClick: () => {
+          newPopupOpenCard.open(item);
+        },
+      });
 
+      cardListArray.addItem(card.generateCard());
+    },
+  },
+  cardContainer
+);
 
-// Обработчик при событии submit кнопки(попапа)
-const handleSubmitFormAddCard = (event) => {
-  event.preventDefault();
+cardListArray.renderItems();
 
-  createCard(
-    { name: inputNameCard.value, link: inputCardImage.value },
-    ".card-template",
-    handleOpenPopup
-  );
-
-  event.target.reset();
-  closePopup(popupAddCard);
-};
-
-formAddCard.addEventListener("submit", handleSubmitFormAddCard);
-
-// Проходим по массиву и создаем для каждого элемента добавление карточки при загрузке страницы
-initialCards.forEach((item) => {
-  createCard(item, ".card-template", handleOpenPopup);
-});
-
-//Валидация для 2х попапов
+/* ---------- Валидация ---------- */
 const validationFormEditProfile = new FormValidator(
   objectValidation,
   formEditProfile
