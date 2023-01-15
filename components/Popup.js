@@ -45,7 +45,6 @@ export default class Popup {
   close() {
     this._popup.classList.remove("pop-up_opened");
 
-    //снимаем все слушатели на закрытие
     this._buttonExitPopup.removeEventListener("click", () => {
       this.close();
     });
