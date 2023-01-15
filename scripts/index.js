@@ -2,8 +2,6 @@ import { initialCards, objectValidation } from "../utils/constants.js";
 
 import {
   popupOpenCard,
-  imagePopupOpenCard,
-  namePopupOpenCard,
   cardContainer,
   profileName,
   profileProfession,
@@ -15,8 +13,6 @@ import {
   buttonAddCard,
   popupAddCard,
   formAddCard,
-  inputNameCard,
-  inputCardImage,
 } from "../utils/elements.js";
 
 import Section from "../components/Section.js";
@@ -27,15 +23,27 @@ import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 
 /* ---------- Popup "Изменение данных профиля" ---------- */
+const userInfo = new UserInfo({
+  name: profileName,
+  about: profileProfession,
+});
+
 const newPopupProfile = new PopupWithForm({
   selectorPopup: popupEditProfile,
-  handleFormSubmit: () => {},
+  handleFormSubmit: (event) => {
+    event.preventDefault();
+    const infoProfileFromForm = newPopupProfile._getInputValues();
+    userInfo.setUserInfo(infoProfileFromForm);
+    newPopupProfile.close();
+  },
 });
 
 newPopupProfile.setEventListeners();
 
 buttonEditProfile.addEventListener("click", () => {
   newPopupProfile.open();
+  nameInput.value = userInfo.getUserInfo().name;
+  jobInput.value = userInfo.getUserInfo().about;
 });
 
 /* ---------- Popup "Добавление карточки" ---------- */
@@ -49,9 +57,10 @@ const newPopupAddCard = new PopupWithForm({
       data: objNewCard,
       templateSelector: ".card-template",
       handleCardClick: () => {
-        newPopupOpenCard.open(item);
+        newPopupOpenCard.open(objNewCard);
       },
     });
+    console.log(newCard);
     cardContainer.prepend(newCard.generateCard());
     newPopupAddCard.close();
   },
@@ -62,72 +71,12 @@ newPopupAddCard.setEventListeners();
 buttonAddCard.addEventListener("click", () => {
   newPopupAddCard.open();
 });
-/*
-const newPopupAddCard = new PopupWithForm({
-  selectorPopup: popupAddCard,
-  handleFormSubmit: (formData) => {
-    const card = new Section(
-      {
-        data: [formData],
-        renderer: (item) => {
-          const newCCard = new Card({
-            data: item,
-            templateSelector: ".card-template",
-            handleCardClick: () => {
-              newPopupOpenCard.open(item);
-            },
-          });
-          console.log(newCCard);
-          cardList.addItem(newCCard.generateCard());
-        },
-      },
-      cardContainer
-    );
-  },
-});
-*/
-/*
-const newPopupAddCard = new PopupWithForm({
-  selectorPopup: popupAddCard,
-  handleFormSubmit: (formData) => {},
-});
-*/
 
 /* ---------- Popup "Увеличеная карточка" ---------- */
 const newPopupOpenCard = new PopupWithImage(popupOpenCard);
 newPopupOpenCard.setEventListeners();
-/*
-// Функция-обработчик открытие попапа увеличенной картинки карты (колбэк при клике на картинку)
-function handleOpenPopup(name, link) {
-  imagePopupOpenCard.src = link;
-  imagePopupOpenCard.alt = name;
-  namePopupOpenCard.textContent = name;
-  //openPopup(popupOpenCard);
-  newPopupOpenCard.open();
-}*/
-/*
-// POPUP "редактирование профиля" - слушатели на открытие и событие сабмит
-buttonEditProfile.addEventListener("click", () => {
-  //openPopup(popupEditProfile);
-  newPopupProfile.open();
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileProfession.textContent;
-});*/
-/*
-const handleSubmitFormEditProfile = (form) => {
-  form.preventDefault();
 
-  profileName.textContent = nameInput.value;
-  profileProfession.textContent = jobInput.value;
-
-  //closePopup(popupEditProfile);
-  newPopupProfile.close();
-};
-
-formEditProfile.addEventListener("submit", handleSubmitFormEditProfile);
-*/
-
-/* ---------- отрисовываем карточки при загрузке страницы ---------- */
+/* ---------- Отрисовываем карточки при загрузке страницы ---------- */
 
 const cardListArray = new Section(
   {
@@ -149,7 +98,7 @@ const cardListArray = new Section(
 
 cardListArray.renderItems();
 
-/* ---------- Валидация ---------- */
+/* ---------- Валидация 2х форм---------- */
 const validationFormEditProfile = new FormValidator(
   objectValidation,
   formEditProfile
