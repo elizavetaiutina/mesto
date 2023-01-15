@@ -30,10 +30,8 @@ const userInfo = new UserInfo({
 
 const newPopupProfile = new PopupWithForm({
   selectorPopup: popupEditProfile,
-  handleFormSubmit: (event) => {
-    event.preventDefault();
-    const infoProfileFromForm = newPopupProfile._getInputValues();
-    userInfo.setUserInfo(infoProfileFromForm);
+  handleFormSubmit: (formData) => {
+    userInfo.setUserInfo(formData);
     newPopupProfile.close();
   },
 });
@@ -49,15 +47,12 @@ buttonEditProfile.addEventListener("click", () => {
 /* ---------- Popup "Добавление карточки" ---------- */
 const newPopupAddCard = new PopupWithForm({
   selectorPopup: popupAddCard,
-  handleFormSubmit: (event) => {
-    event.preventDefault();
-    const objNewCard = newPopupAddCard._getInputValues();
-
+  handleFormSubmit: (formData) => {
     const newCard = new Card({
-      data: objNewCard,
+      data: formData,
       templateSelector: ".card-template",
       handleCardClick: () => {
-        newPopupOpenCard.open(objNewCard);
+        newPopupOpenCard.open(formData);
       },
     });
     console.log(newCard);
