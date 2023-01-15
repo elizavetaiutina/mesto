@@ -5,19 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MESTO</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="content">
     <div class="page">
       <!--HEADER-->
       <header class="header">
-        <img src="./images/logo.svg" alt="Логотип- Место" class="logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Логотип- Место"
+          class="logo"
+        />
       </header>
       <main class="main">
         <!--PROFILE-->
         <section class="profile">
           <img
-            src="./images/avatarKusto.jpg"
+            src="<%=require('./images/avatarKusto.jpg')%>"
             alt="Аватар Жак-Ив Кусто"
             class="profile__avatar"
           />
@@ -159,6 +162,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>

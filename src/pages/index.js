@@ -1,3 +1,5 @@
+import "./index.css";
+
 import { initialCards, objectValidation } from "../utils/constants.js";
 
 import {
