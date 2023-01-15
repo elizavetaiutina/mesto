@@ -5,13 +5,15 @@ export const profileName = document.querySelector(".profile__name");
 export const profileProfession = document.querySelector(".profile__profession");
 
 // POP-UP OPEN CARD
-export const popupOpenCard = document.querySelector(".pop-up_type_card-open");
+export const selectorPopupOpenCard = document.querySelector(
+  ".pop-up_type_card-open"
+);
 
 //POP-UP EDIT PROFILE
 export const buttonEditProfile = document.querySelector(
   ".profile__button-edit"
 );
-export const popupEditProfile = document.querySelector(
+export const selectorPopupEditProfile = document.querySelector(
   ".pop-up_type_edit-profile"
 );
 // Форма редактирования профиля в попапе
@@ -26,6 +28,8 @@ export const jobInput = formEditProfile.querySelector(
 
 //POP-UP ADD CARD
 export const buttonAddCard = document.querySelector(".profile__button-add");
-export const popupAddCard = document.querySelector(".pop-up_type_add-card");
+export const selectorPopupAddCard = document.querySelector(
+  ".pop-up_type_add-card"
+);
 // Форма добавление картинки
 export const formAddCard = document.forms["form-add-card"];

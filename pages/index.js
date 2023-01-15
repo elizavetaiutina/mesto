@@ -1,17 +1,17 @@
 import { initialCards, objectValidation } from "../utils/constants.js";
 
 import {
-  popupOpenCard,
+  selectorPopupOpenCard,
   cardContainer,
   profileName,
   profileProfession,
   buttonEditProfile,
-  popupEditProfile,
+  selectorPopupEditProfile,
   formEditProfile,
   nameInput,
   jobInput,
   buttonAddCard,
-  popupAddCard,
+  selectorPopupAddCard,
   formAddCard,
 } from "../utils/elements.js";
 
@@ -28,48 +28,48 @@ const userInfo = new UserInfo({
   about: profileProfession,
 });
 
-const newPopupProfile = new PopupWithForm({
-  selectorPopup: popupEditProfile,
+const popupProfile = new PopupWithForm({
+  selectorPopup: selectorPopupEditProfile,
   handleFormSubmit: (formData) => {
     userInfo.setUserInfo(formData);
-    newPopupProfile.close();
+    popupProfile.close();
   },
 });
 
-newPopupProfile.setEventListeners();
+popupProfile.setEventListeners();
 
 buttonEditProfile.addEventListener("click", () => {
-  newPopupProfile.open();
+  popupProfile.open();
   nameInput.value = userInfo.getUserInfo().name;
   jobInput.value = userInfo.getUserInfo().about;
 });
 
 /* ---------- Popup "Добавление карточки" ---------- */
-const newPopupAddCard = new PopupWithForm({
-  selectorPopup: popupAddCard,
+const popupAddCard = new PopupWithForm({
+  selectorPopup: selectorPopupAddCard,
   handleFormSubmit: (formData) => {
     const newCard = new Card({
       data: formData,
       templateSelector: ".card-template",
       handleCardClick: () => {
-        newPopupOpenCard.open(formData);
+        popupOpenCard.open(formData);
       },
     });
     console.log(newCard);
     cardContainer.prepend(newCard.generateCard());
-    newPopupAddCard.close();
+    popupAddCard.close();
   },
 });
 
-newPopupAddCard.setEventListeners();
+popupAddCard.setEventListeners();
 
 buttonAddCard.addEventListener("click", () => {
-  newPopupAddCard.open();
+  popupAddCard.open();
 });
 
 /* ---------- Popup "Увеличеная карточка" ---------- */
-const newPopupOpenCard = new PopupWithImage(popupOpenCard);
-newPopupOpenCard.setEventListeners();
+const popupOpenCard = new PopupWithImage(selectorPopupOpenCard);
+popupOpenCard.setEventListeners();
 
 /* ---------- Отрисовываем карточки при загрузке страницы ---------- */
 
@@ -81,7 +81,7 @@ const cardListArray = new Section(
         data: item,
         templateSelector: ".card-template",
         handleCardClick: () => {
-          newPopupOpenCard.open(item);
+          popupOpenCard.open(item);
         },
       });
 
