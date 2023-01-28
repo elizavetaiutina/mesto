@@ -1,12 +1,16 @@
 import "./index.css";
 
-import { initialCards, objectValidation } from "../utils/constants.js";
+import { objectValidation } from "../utils/constants.js";
 
 import {
   selectorPopupOpenCard,
   cardContainer,
   profileName,
   profileProfession,
+  profileAvatar,
+  editAvatar,
+  formEditAvatar,
+  selectorEditAvatar,
   buttonEditProfile,
   selectorPopupEditProfile,
   formEditProfile,
@@ -24,7 +28,10 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 
-/* ---------- функция создания карточки ---------- */
+import Api from "../components/API.js";
+
+/* ---------- Функция создания карточки ---------- */
+
 function createCard(item) {
   const newCard = new Card({
     data: item,
@@ -36,8 +43,24 @@ function createCard(item) {
   const cardElement = newCard.generateCard();
   return cardElement;
 }
+/* ---------- Popup "Изменение аватара профиля" ---------- */
+
+const popupAvatar = new PopupWithForm({
+  selectorPopup: selectorEditAvatar,
+  handleFormSubmit: (formData) => {
+    profileAvatar.src = formData.link;
+    popupAvatar.close();
+  },
+});
+
+popupAvatar.setEventListeners();
+
+editAvatar.addEventListener("click", () => {
+  popupAvatar.open();
+});
 
 /* ---------- Popup "Изменение данных профиля" ---------- */
+
 const userInfo = new UserInfo({
   name: profileName,
   about: profileProfession,
@@ -46,7 +69,9 @@ const userInfo = new UserInfo({
 const popupProfile = new PopupWithForm({
   selectorPopup: selectorPopupEditProfile,
   handleFormSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
+    api.editUserInfo(formData).then((data) => {
+      userInfo.setUserInfo(data);
+    });
     popupProfile.close();
   },
 });
@@ -61,12 +86,13 @@ buttonEditProfile.addEventListener("click", () => {
 });
 
 /* ---------- Popup "Добавление карточки" ---------- */
+
 const popupAddCard = new PopupWithForm({
   selectorPopup: selectorPopupAddCard,
   handleFormSubmit: (formData) => {
-    const newCard = createCard(formData);
-    console.log(newCard);
-    cardListArray.addItem(newCard);
+    api.createNewCard(formData).then((data) => {
+      cardListArray.addItem(createCard(data));
+    });
     popupAddCard.close();
   },
 });
@@ -78,26 +104,52 @@ buttonAddCard.addEventListener("click", () => {
 });
 
 /* ---------- Popup "Увеличеная карточка" ---------- */
+
 const popupOpenCard = new PopupWithImage(selectorPopupOpenCard);
 popupOpenCard.setEventListeners();
 
-/* ---------- Отрисовываем карточки при загрузке страницы ---------- */
+/* ---------- ЗАПРОС К СЕРВЕРУ ---------- */
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-58",
+  headers: {
+    authorization: "7e3924b3-772e-4fa2-891e-23590c362a18",
+    "Content-Type": "application/json",
+  },
+});
+
+/* ---------- CARD запрос с сервера ---------- */
 
 const cardListArray = new Section(
   {
-    data: initialCards,
     renderer: (item) => {
       const card = createCard(item);
-
       cardListArray.addItem(card);
     },
   },
   cardContainer
 );
 
-cardListArray.renderItems();
+api.getInitialCards().then((data) => {
+  cardListArray.renderItems(data);
+});
 
-/* ---------- Валидация 2х форм---------- */
+/* ---------- USER запрос с сервера при загрузке страницы ---------- */
+
+api.getUserInfo().then((data) => {
+  profileName.textContent = data.name;
+  profileProfession.textContent = data.about;
+  profileAvatar.src = data.avatar;
+});
+
+/* ---------- Валидация 3х форм---------- */
+
+const validationFormEditAvatar = new FormValidator(
+  objectValidation,
+  formEditAvatar
+);
+validationFormEditAvatar.enableValidation();
+
 const validationFormEditProfile = new FormValidator(
   objectValidation,
   formEditProfile

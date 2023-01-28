@@ -9,15 +9,14 @@
 У класса Section нет своей разметки. Он получает разметку через функцию-колбэк и вставляет её в контейнер.*/
 
 export default class Section {
-  constructor({ data, renderer }, selectorContainer) {
-    this._array = data;
+  constructor({ renderer }, selectorContainer) {
     this._renderer = renderer;
     this._container = selectorContainer;
   }
 
   //перебирает массив. Внутри вызывает для каждого элемента массива метод addItem
-  renderItems() {
-    this._array.forEach((item) => {
+  renderItems(array) {
+    array.forEach((item) => {
       this._renderer(item);
     });
   }

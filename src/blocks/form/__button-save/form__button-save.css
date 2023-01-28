@@ -22,9 +22,13 @@
 
 @media screen and (min-width: 490px) {
   .form__button-save {
-    margin-top: 20px;
+    margin-top: 15px;
     min-height: 50px;
     font-size: 18px;
     line-height: 22px;
   }
+}
+
+.form__button-delete {
+  margin-top: 38px;
 }

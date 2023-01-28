@@ -22,7 +22,6 @@
 @import url(../blocks/pop-up/__container/pop-up__container.css);
 @import url(../blocks/pop-up/__title/pop-up__title.css);
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__set/form__set.css);
 @import url(../blocks/form/__span-error/form__span-error.css);
 @import url(../blocks/form/__span-error/_active/form__span-error_active.css);
 @import url(../blocks/form/__input/form__input.css);
@@ -45,6 +44,7 @@
 /*SECTION - PROFILE*/
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__avatar-overlay/profile__avatar-overlay.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name-edit/profile__name-edit.css);
 @import url(../blocks/profile/__name/profile__name.css);

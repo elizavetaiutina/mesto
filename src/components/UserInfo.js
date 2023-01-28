@@ -25,6 +25,6 @@ export default class UserInfo {
   setUserInfo(newUserInfoFromForm) {
     // данные полученные из формы присваиваются профилю
     this._nameUser.textContent = newUserInfoFromForm.name;
-    this._aboutUser.textContent = newUserInfoFromForm.profession;
+    this._aboutUser.textContent = newUserInfoFromForm.about;
   }
 }
