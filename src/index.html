@@ -139,7 +139,7 @@
             <input
               type="url"
               id="url-input"
-              name="link"
+              name="avatar"
               class="form__input form__input_info_url-avatar"
               placeholder="Ссылка на картинку"
               required
@@ -195,11 +195,14 @@
         <img class="card__image" />
         <div class="card__info">
           <h2 class="card__name"></h2>
-          <button
-            type="button"
-            aria-label="Поставить лайк"
-            class="card__button-like"
-          ></button>
+          <div class="card__like">
+            <button
+              type="button"
+              aria-label="Поставить лайк"
+              class="card__button-like"
+            ></button>
+            <p class="card__like-amount"></p>
+          </div>
         </div>
       </li>
     </template>

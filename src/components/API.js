@@ -26,6 +26,18 @@ export default class Api {
     });
   }
 
+  editUserAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(data),
+    }).then((result) => {
+      if (result.ok) {
+        return result.json();
+      }
+    });
+  }
+
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
@@ -51,5 +63,38 @@ export default class Api {
     });
   }
 
+  deleteCard(id) {
+    return fetch(`${this._url}/cards/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((result) => {
+      if (result.ok) {
+        return result.json();
+      }
+    });
+  }
+  /*
+  likeCard(data, id) {
+    return fetch(`${this._url}/cards/${id}//likes`, {
+      method: "PUT",
+      headers: this._headers,
+      body: JSON.stringify(data),
+    }).then((result) => {
+      if (result.ok) {
+        return result.json();
+      }
+    });
+  }
+  dislikeCard(data, id) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+      body: JSON.stringify(data),
+    }).then((result) => {
+      if (result.ok) {
+        return result.json();
+      }
+    });
+  }*/
   // другие методы работы с API
 }

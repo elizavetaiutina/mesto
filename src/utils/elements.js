@@ -16,7 +16,10 @@ export const formEditAvatar = document.forms["form-edit-avatar"];
 export const selectorPopupOpenCard = document.querySelector(
   ".pop-up_type_card-open"
 );
-
+// POP-UP DELETE CARD
+export const selectorPopupDeleteCard = document.querySelector(
+  ".pop-up_type_delete-card"
+);
 //POP-UP EDIT PROFILE
 export const buttonEditProfile = document.querySelector(
   ".profile__button-edit"

@@ -22,7 +22,11 @@ export default class Section {
   }
 
   //принимает параметр element и вставляет его в контейнер
+  addItemPrepend(element) {
+    this._container.prepend(element); //в начало
+  }
+
   addItem(element) {
-    this._container.prepend(element);
+    this._container.append(element); //в конец
   }
 }

@@ -18,6 +18,7 @@ import {
   jobInput,
   buttonAddCard,
   selectorPopupAddCard,
+  selectorPopupDeleteCard,
   formAddCard,
 } from "../utils/elements.js";
 
@@ -39,16 +40,45 @@ function createCard(item) {
     handleCardClick: () => {
       popupOpenCard.open(item);
     },
+    handleDelete: (id) => {
+      /*popupDeleteCard.open();
+      popupDeleteCard.handleDeleteCard();*/
+      api.deleteCard(id).then(() => {
+        //popupDeleteCard.open();
+        newCard.deleteCard();
+      });
+    },
   });
-  const cardElement = newCard.generateCard();
-  return cardElement;
+  return newCard.generateCard();
 }
+
+/* ---------- Popup "Удаление карточки" ---------- */
+
+const popupDeleteCard = new PopupWithForm({
+  selectorPopup: selectorPopupDeleteCard,
+  /*handleDelete: (id) => {
+    api.deleteCard(id).then((data) => {
+      newCard.deleteCard();
+      console.log("data");
+    });
+    popupDeleteCard.close();
+  },*/
+});
+
+popupDeleteCard.setEventListeners();
+/*
+buttonAddCard.addEventListener("click", () => {
+  popupDeleteCard.open();
+});
+*/
 /* ---------- Popup "Изменение аватара профиля" ---------- */
 
 const popupAvatar = new PopupWithForm({
   selectorPopup: selectorEditAvatar,
   handleFormSubmit: (formData) => {
-    profileAvatar.src = formData.link;
+    api.editUserAvatar(formData).then((data) => {
+      profileAvatar.src = data.avatar;
+    });
     popupAvatar.close();
   },
 });
@@ -71,6 +101,7 @@ const popupProfile = new PopupWithForm({
   handleFormSubmit: (formData) => {
     api.editUserInfo(formData).then((data) => {
       userInfo.setUserInfo(data);
+      console.log(data);
     });
     popupProfile.close();
   },
@@ -91,7 +122,7 @@ const popupAddCard = new PopupWithForm({
   selectorPopup: selectorPopupAddCard,
   handleFormSubmit: (formData) => {
     api.createNewCard(formData).then((data) => {
-      cardListArray.addItem(createCard(data));
+      cardListArray.addItemPrepend(createCard(data));
     });
     popupAddCard.close();
   },
@@ -131,6 +162,7 @@ const cardListArray = new Section(
 );
 
 api.getInitialCards().then((data) => {
+  console.log(data);
   cardListArray.renderItems(data);
 });
 
