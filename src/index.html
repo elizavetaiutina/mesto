@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="<%=require('./images/logo.svg')%>" />
     <title>MESTO</title>
   </head>
   <body class="content">
@@ -172,15 +173,7 @@
             class="pop-up__exit"
           ></button>
           <h2 class="pop-up__title">Вы уверены?</h2>
-          <form
-            name="form-delete-card"
-            class="form form_type_add-card"
-            novalidate
-          >
-            <button type="submit" class="form__button-save form__button-delete">
-              Да
-            </button>
-          </form>
+          <button type="button" class="form__button-delete">Да</button>
         </div>
       </div>
     </div>

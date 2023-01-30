@@ -1,0 +1,29 @@
+.form__button-delete {
+  width: 100%;
+  max-width: 430px;
+  min-height: 46px;
+  margin: 15px 0 0;
+  padding: 0;
+  background: #000000;
+  border: none;
+  border-radius: 2px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+.form__button-delete:hover {
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 490px) {
+  .form__button-delete {
+    margin-top: 15px;
+    min-height: 50px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

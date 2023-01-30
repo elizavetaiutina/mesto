@@ -31,6 +31,7 @@
 @import url(../blocks/form/__input/_info/form__input_info_name-place.css);
 @import url(../blocks/form/__input/_info/form__input_info_url-place.css);
 @import url(../blocks/form/__button-save/form__button-save.css);
+@import url(../blocks/form/__button-delete/form__button-delete.css);
 @import url(../blocks/form/__button-save/_disabled/form__button-save_disabled.css);
 
 /*SECTION - POP-UP OPEN CARD*/

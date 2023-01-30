@@ -73,18 +73,18 @@ export default class Api {
       }
     });
   }
-  /*
-  likeCard(data, id) {
+
+  likeCard(id) {
     return fetch(`${this._url}/cards/${id}//likes`, {
       method: "PUT",
       headers: this._headers,
-      body: JSON.stringify(data),
     }).then((result) => {
       if (result.ok) {
         return result.json();
       }
     });
   }
+  /*
   dislikeCard(data, id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",

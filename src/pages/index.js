@@ -3,22 +3,17 @@ import "./index.css";
 import { objectValidation } from "../utils/constants.js";
 
 import {
-  selectorPopupOpenCard,
   cardContainer,
   profileName,
-  profileProfession,
+  profileAbout,
   profileAvatar,
   editAvatar,
   formEditAvatar,
-  selectorEditAvatar,
   buttonEditProfile,
-  selectorPopupEditProfile,
   formEditProfile,
   nameInput,
   jobInput,
   buttonAddCard,
-  selectorPopupAddCard,
-  selectorPopupDeleteCard,
   formAddCard,
 } from "../utils/elements.js";
 
@@ -26,6 +21,7 @@ import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithDeleteCard from "../components/PopupWithDeleteCard.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 
@@ -36,16 +32,24 @@ import Api from "../components/API.js";
 function createCard(item) {
   const newCard = new Card({
     data: item,
+    userId: userId,
     templateSelector: ".card-template",
     handleCardClick: () => {
       popupOpenCard.open(item);
     },
+    /* удаление без попапа
     handleDelete: (id) => {
-      /*popupDeleteCard.open();
-      popupDeleteCard.handleDeleteCard();*/
       api.deleteCard(id).then(() => {
-        //popupDeleteCard.open();
         newCard.deleteCard();
+      }); 
+    },*/
+    sendIdCardToPopup: (id) => {
+      popupDeleteCard.open();
+      popupDeleteCard.callBackDeleteCardWithPopup(() => {
+        api.deleteCard(id).then(() => {
+          newCard.deleteCard();
+          console.log("удалили !");
+        });
       });
     },
   });
@@ -54,32 +58,20 @@ function createCard(item) {
 
 /* ---------- Popup "Удаление карточки" ---------- */
 
-const popupDeleteCard = new PopupWithForm({
-  selectorPopup: selectorPopupDeleteCard,
-  /*handleDelete: (id) => {
-    api.deleteCard(id).then((data) => {
-      newCard.deleteCard();
-      console.log("data");
-    });
-    popupDeleteCard.close();
-  },*/
+const popupDeleteCard = new PopupWithDeleteCard({
+  selectorPopup: ".pop-up_type_delete-card",
 });
 
 popupDeleteCard.setEventListeners();
-/*
-buttonAddCard.addEventListener("click", () => {
-  popupDeleteCard.open();
-});
-*/
+
 /* ---------- Popup "Изменение аватара профиля" ---------- */
 
 const popupAvatar = new PopupWithForm({
-  selectorPopup: selectorEditAvatar,
+  selectorPopup: ".pop-up_type_edit-avatar",
   handleFormSubmit: (formData) => {
     api.editUserAvatar(formData).then((data) => {
       profileAvatar.src = data.avatar;
     });
-    popupAvatar.close();
   },
 });
 
@@ -93,17 +85,15 @@ editAvatar.addEventListener("click", () => {
 
 const userInfo = new UserInfo({
   name: profileName,
-  about: profileProfession,
+  about: profileAbout,
 });
 
 const popupProfile = new PopupWithForm({
-  selectorPopup: selectorPopupEditProfile,
+  selectorPopup: ".pop-up_type_edit-profile",
   handleFormSubmit: (formData) => {
     api.editUserInfo(formData).then((data) => {
       userInfo.setUserInfo(data);
-      console.log(data);
     });
-    popupProfile.close();
   },
 });
 
@@ -119,12 +109,11 @@ buttonEditProfile.addEventListener("click", () => {
 /* ---------- Popup "Добавление карточки" ---------- */
 
 const popupAddCard = new PopupWithForm({
-  selectorPopup: selectorPopupAddCard,
+  selectorPopup: ".pop-up_type_add-card",
   handleFormSubmit: (formData) => {
     api.createNewCard(formData).then((data) => {
-      cardListArray.addItemPrepend(createCard(data));
+      cardList.addItemPrepend(createCard(data));
     });
-    popupAddCard.close();
   },
 });
 
@@ -136,7 +125,7 @@ buttonAddCard.addEventListener("click", () => {
 
 /* ---------- Popup "Увеличеная карточка" ---------- */
 
-const popupOpenCard = new PopupWithImage(selectorPopupOpenCard);
+const popupOpenCard = new PopupWithImage(".pop-up_type_card-open");
 popupOpenCard.setEventListeners();
 
 /* ---------- ЗАПРОС К СЕРВЕРУ ---------- */
@@ -151,28 +140,41 @@ const api = new Api({
 
 /* ---------- CARD запрос с сервера ---------- */
 
-const cardListArray = new Section(
+const cardList = new Section(
   {
     renderer: (item) => {
       const card = createCard(item);
-      cardListArray.addItem(card);
+      cardList.addItem(card);
     },
   },
   cardContainer
 );
-
+/*
 api.getInitialCards().then((data) => {
   console.log(data);
   cardListArray.renderItems(data);
-});
+});*/
 
-/* ---------- USER запрос с сервера при загрузке страницы ---------- */
-
+/* ---------- USER запрос с сервера при загрузке страницы ---------- 
+let userId;
 api.getUserInfo().then((data) => {
+  userId = data._id;
   profileName.textContent = data.name;
-  profileProfession.textContent = data.about;
+  profileAbout.textContent = data.about;
   profileAvatar.src = data.avatar;
-});
+});*/
+
+let userId;
+Promise.all([api.getInitialCards(), api.getUserInfo()]).then(
+  ([cards, user]) => {
+    console.log(cards);
+    cardList.renderItems(cards);
+    userId = user._id;
+    profileName.textContent = user.name;
+    profileAbout.textContent = user.about;
+    profileAvatar.src = user.avatar;
+  }
+);
 
 /* ---------- Валидация 3х форм---------- */
 
