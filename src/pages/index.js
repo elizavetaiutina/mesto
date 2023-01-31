@@ -67,6 +67,15 @@ function createCard(item) {
   return newCard.generateCard();
 }
 
+/* -- Отображение уведомления на кнопке пока данные загружаются --*/
+function renderLoading(isLoading, button, text) {
+  if (isLoading) {
+    button.textContent = "Сохранение...";
+  } else {
+    button.textContent = text;
+  }
+}
+
 /* ---------- Popup "Удаление карточки" ---------- */
 
 const popupDeleteCard = new PopupWithDeleteCard({
@@ -79,10 +88,17 @@ popupDeleteCard.setEventListeners();
 
 const popupAvatar = new PopupWithForm({
   selectorPopup: ".pop-up_type_edit-avatar",
-  handleFormSubmit: (formData) => {
-    api.editUserAvatar(formData).then((data) => {
-      profileAvatar.src = data.avatar;
-    });
+  handleFormSubmit: (formData, button, text) => {
+    renderLoading(true, button, text);
+    api
+      .editUserAvatar(formData)
+      .then((data) => {
+        profileAvatar.src = data.avatar;
+      })
+      .finally(() => {
+        popupAvatar.close();
+        renderLoading(false, button, text);
+      });
   },
 });
 
@@ -101,10 +117,17 @@ const userInfo = new UserInfo({
 
 const popupProfile = new PopupWithForm({
   selectorPopup: ".pop-up_type_edit-profile",
-  handleFormSubmit: (formData) => {
-    api.editUserInfo(formData).then((data) => {
-      userInfo.setUserInfo(data);
-    });
+  handleFormSubmit: (formData, button, text) => {
+    renderLoading(true, button, text);
+    api
+      .editUserInfo(formData)
+      .then((data) => {
+        userInfo.setUserInfo(data);
+      })
+      .finally(() => {
+        popupProfile.close();
+        renderLoading(false, button, text);
+      });
   },
 });
 
@@ -121,10 +144,17 @@ buttonEditProfile.addEventListener("click", () => {
 
 const popupAddCard = new PopupWithForm({
   selectorPopup: ".pop-up_type_add-card",
-  handleFormSubmit: (formData) => {
-    api.createNewCard(formData).then((data) => {
-      cardList.addItemPrepend(createCard(data));
-    });
+  handleFormSubmit: (formData, button, text) => {
+    renderLoading(true, button, text);
+    api
+      .createNewCard(formData)
+      .then((data) => {
+        cardList.addItemPrepend(createCard(data));
+      })
+      .finally(() => {
+        popupAddCard.close();
+        renderLoading(false, button, text);
+      });
   },
 });
 

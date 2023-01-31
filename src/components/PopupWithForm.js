@@ -14,7 +14,8 @@ export default class PopupWithForm extends Popup {
   constructor({ selectorPopup, handleFormSubmit }) {
     super(selectorPopup);
     this._form = this._popup.querySelector(".form");
-    this._buttonDelete = this._popup.querySelector(".form__button-delete");
+    this._button = this._popup.querySelector(".form__button-save");
+    this._textButton = this._button.textContent;
     this._inputList = this._form.querySelectorAll(".form__input");
     this._handleFormSubmit = handleFormSubmit;
   }
@@ -32,10 +33,12 @@ export default class PopupWithForm extends Popup {
 
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-
       // добавим вызов функции _handleFormSubmit передадим ей объект — результат работы _getInputValues
-      this._handleFormSubmit(this._getInputValues());
-      this.close();
+      this._handleFormSubmit(
+        this._getInputValues(),
+        this._button,
+        this._textButton
+      );
     });
   }
 

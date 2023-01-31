@@ -95,5 +95,4 @@ export default class Api {
       }
     });
   }
-  // другие методы работы с API
 }
