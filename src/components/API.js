@@ -84,17 +84,16 @@ export default class Api {
       }
     });
   }
-  /*
-  dislikeCard(data, id) {
+
+  dislikeCard(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-      body: JSON.stringify(data),
     }).then((result) => {
       if (result.ok) {
         return result.json();
       }
     });
-  }*/
+  }
   // другие методы работы с API
 }

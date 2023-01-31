@@ -28,7 +28,6 @@ import FormValidator from "../components/FormValidator.js";
 import Api from "../components/API.js";
 
 /* ---------- Функция создания карточки ---------- */
-
 function createCard(item) {
   const newCard = new Card({
     data: item,
@@ -50,6 +49,18 @@ function createCard(item) {
           newCard.deleteCard();
           console.log("удалили !");
         });
+      });
+    },
+    sendLikeCard: (id) => {
+      api.likeCard(id).then((data) => {
+        newCard.likeButton();
+        newCard.updateAmountLike(data.likes.length);
+      });
+    },
+    sendDislikeCard: (id) => {
+      api.dislikeCard(id).then((data) => {
+        newCard.dislikeButton();
+        newCard.updateAmountLike(data.likes.length);
       });
     },
   });
@@ -149,27 +160,15 @@ const cardList = new Section(
   },
   cardContainer
 );
-/*
-api.getInitialCards().then((data) => {
-  console.log(data);
-  cardListArray.renderItems(data);
-});*/
 
-/* ---------- USER запрос с сервера при загрузке страницы ---------- 
-let userId;
-api.getUserInfo().then((data) => {
-  userId = data._id;
-  profileName.textContent = data.name;
-  profileAbout.textContent = data.about;
-  profileAvatar.src = data.avatar;
-});*/
+/* ---------- Запросы данных User и массива карт с сервера при загрузке страницы ---------- */
 
 let userId;
 Promise.all([api.getInitialCards(), api.getUserInfo()]).then(
   ([cards, user]) => {
+    userId = user._id;
     console.log(cards);
     cardList.renderItems(cards);
-    userId = user._id;
     profileName.textContent = user.name;
     profileAbout.textContent = user.about;
     profileAvatar.src = user.avatar;
