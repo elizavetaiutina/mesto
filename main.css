@@ -21,7 +21,7 @@
 
 
 
-.form__button-save{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:14px;font-weight:400;line-height:17px;margin:15px 0 0;max-width:430px;min-height:46px;padding:0;text-align:center;transition:opacity .2s ease-in-out;width:100%}.form__button-save:hover{opacity:.8}@media screen and (min-width:490px){.form__button-save{font-size:18px;line-height:22px;margin-top:15px;min-height:50px}}.form__button-delete{margin-top:38px}
+.form__button-save{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:14px;font-weight:400;line-height:17px;margin:15px 0 0;max-width:430px;min-height:46px;padding:0;text-align:center;transition:opacity .2s ease-in-out;width:100%}.form__button-save:hover{opacity:.8}@media screen and (min-width:490px){.form__button-save{font-size:18px;line-height:22px;margin-top:15px;min-height:50px}}
 .form__button-delete{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:14px;font-weight:400;line-height:17px;margin:15px 0 0;max-width:430px;min-height:46px;padding:0;text-align:center;transition:opacity .2s ease-in-out;width:100%}.form__button-delete:hover{opacity:.8}@media screen and (min-width:490px){.form__button-delete{font-size:18px;line-height:22px;margin-top:38px;min-height:50px}}
 .form__button-save_disabled{background-color:transparent;border:1px solid #000;color:#000;opacity:.2;pointer-events:none}
 .pop-up_type_card-open{background-color:rgba(0,0,0,.9)}
