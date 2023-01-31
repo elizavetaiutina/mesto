@@ -101,7 +101,6 @@ export default class Card {
     this._buttonDelete = this._element.querySelector(".card__button-delete");
     this._imageCard = this._element.querySelector(".card__image");
     this._titleCard = this._element.querySelector(".card__name");
-    this.isLiked = false;
 
     this._setEventListeners();
     this._showButtonLike(); // отображение кнопки лайк

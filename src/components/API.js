@@ -4,14 +4,19 @@ export default class Api {
     this._headers = headers;
   }
 
-  getUserInfo() {
-    return fetch(`https://nomoreparties.co/v1/cohort-58/users/me`, {
-      headers: this._headers,
-    }).then((result) => {
+  _returnJson() {
+    return (result) => {
       if (result.ok) {
         return result.json();
       }
-    });
+      return Promise.reject(`Ошибка: ${res.status}`); // если ошибка, отклоняем промис
+    };
+  }
+
+  getUserInfo() {
+    return fetch(`https://nomoreparties.co/v1/cohort-58/users/me`, {
+      headers: this._headers,
+    }).then(this._returnJson());
   }
 
   editUserInfo(data) {
@@ -19,11 +24,7 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then((result) => {
-      if (result.ok) {
-        return result.json();
-      }
-    });
+    }).then(this._returnJson());
   }
 
   editUserAvatar(data) {
@@ -31,24 +32,13 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then((result) => {
-      if (result.ok) {
-        return result.json();
-      }
-    });
+    }).then(this._returnJson());
   }
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
-    }).then((result) => {
-      if (result.ok) {
-        return result.json();
-      }
-      /*
-      // если ошибка, отклоняем промис
-      return Promise.reject(`Ошибка: ${res.status}`);*/
-    });
+    }).then(this._returnJson());
   }
 
   createNewCard(data) {
@@ -56,43 +46,27 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then((result) => {
-      if (result.ok) {
-        return result.json();
-      }
-    });
+    }).then(this._returnJson());
   }
 
   deleteCard(id) {
     return fetch(`${this._url}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((result) => {
-      if (result.ok) {
-        return result.json();
-      }
-    });
+    }).then(this._returnJson());
   }
 
   likeCard(id) {
     return fetch(`${this._url}/cards/${id}//likes`, {
       method: "PUT",
       headers: this._headers,
-    }).then((result) => {
-      if (result.ok) {
-        return result.json();
-      }
-    });
+    }).then(this._returnJson());
   }
 
   dislikeCard(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((result) => {
-      if (result.ok) {
-        return result.json();
-      }
-    });
+    }).then(this._returnJson());
   }
 }

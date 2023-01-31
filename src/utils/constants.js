@@ -1,31 +1,3 @@
-//Массив 6 карточек, загрузку на страницу которых осуществляет JavaScript
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 // конфиг, передаваемый при валидации
 const objectValidation = {
   formSelector: ".form",
@@ -36,4 +8,6 @@ const objectValidation = {
   errorClass: "form__span-error_active",
 };
 
-export { initialCards, objectValidation };
+const token = "7e3924b3-772e-4fa2-891e-23590c362a18";
+
+export { objectValidation, token };
