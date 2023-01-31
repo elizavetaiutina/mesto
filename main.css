@@ -9,6 +9,7 @@
 
 
 .pop-up_opened{opacity:1;visibility:visible}
+.pop-up__button-delete{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:14px;font-weight:400;line-height:17px;margin:15px 0 0;max-width:430px;min-height:46px;padding:0;text-align:center;transition:opacity .2s ease-in-out;width:100%}.pop-up__button-delete:hover{opacity:.8}@media screen and (min-width:490px){.pop-up__button-delete{font-size:18px;line-height:22px;margin-top:38px;min-height:50px}}
 .pop-up__exit{background-color:transparent;background-image:url(images/Button-popup-exit.039f1f5203f653b4bacd.svg);background-position:50%;background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;margin:0;min-height:20px;min-width:20px;padding:0;position:absolute;right:0;top:-36px;transition:opacity .2s ease-in-out}.pop-up__exit:hover{opacity:.6}@media screen and (min-width:768px){.pop-up__exit{height:32px;right:-40px;top:-40px;width:32px}}
 .pop-up__container{background:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);box-sizing:border-box;display:flex;flex-direction:column;margin:0;min-height:181px;padding:25px 22px;position:relative;width:calc(100vw - 38px)}@media screen and (min-width:466px){.pop-up__container{max-width:430px;padding:34px 36px 37px}}
 .pop-up__title{color:#000;font-size:18px;font-weight:900;line-height:22px;margin:0}@media screen and (min-width:466px){.pop-up__title{font-size:24px;line-height:29px}}
@@ -22,7 +23,6 @@
 
 
 .form__button-save{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:14px;font-weight:400;line-height:17px;margin:15px 0 0;max-width:430px;min-height:46px;padding:0;text-align:center;transition:opacity .2s ease-in-out;width:100%}.form__button-save:hover{opacity:.8}@media screen and (min-width:490px){.form__button-save{font-size:18px;line-height:22px;margin-top:15px;min-height:50px}}
-.form__button-delete{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:14px;font-weight:400;line-height:17px;margin:15px 0 0;max-width:430px;min-height:46px;padding:0;text-align:center;transition:opacity .2s ease-in-out;width:100%}.form__button-delete:hover{opacity:.8}@media screen and (min-width:490px){.form__button-delete{font-size:18px;line-height:22px;margin-top:38px;min-height:50px}}
 .form__button-save_disabled{background-color:transparent;border:1px solid #000;color:#000;opacity:.2;pointer-events:none}
 .pop-up_type_card-open{background-color:rgba(0,0,0,.9)}
 .open-card{position:relative}
