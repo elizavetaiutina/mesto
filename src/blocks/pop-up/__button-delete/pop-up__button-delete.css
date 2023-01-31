@@ -1,4 +1,4 @@
-.form__button-delete {
+.pop-up__button-delete {
   width: 100%;
   max-width: 430px;
   min-height: 46px;
@@ -15,12 +15,12 @@
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
 }
-.form__button-delete:hover {
+.pop-up__button-delete:hover {
   opacity: 0.8;
 }
 
 @media screen and (min-width: 490px) {
-  .form__button-delete {
+  .pop-up__button-delete {
     margin-top: 38px;
     min-height: 50px;
     font-size: 18px;

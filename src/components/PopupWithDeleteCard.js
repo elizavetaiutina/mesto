@@ -3,7 +3,7 @@ import Popup from "./Popup.js";
 export default class PopupWithDeleteCard extends Popup {
   constructor({ selectorPopup }) {
     super(selectorPopup);
-    this._buttonDelete = this._popup.querySelector(".form__button-delete");
+    this._buttonDelete = this._popup.querySelector(".pop-up__button-delete");
   }
 
   callBackDeleteCardWithPopup(callback) {

@@ -17,6 +17,7 @@
 @import url(../blocks/pop-up/_type/pop-up_type_edit-profile.css);
 @import url(../blocks/pop-up/_type/pop-up_type_add-card.css);
 @import url(../blocks/pop-up/_opened/pop-up_opened.css);
+@import url(../blocks/pop-up/__button-delete/pop-up__button-delete.css);
 @import url(../blocks/pop-up/__exit/pop-up__exit.css);
 
 @import url(../blocks/pop-up/__container/pop-up__container.css);
@@ -31,7 +32,6 @@
 @import url(../blocks/form/__input/_info/form__input_info_name-place.css);
 @import url(../blocks/form/__input/_info/form__input_info_url-place.css);
 @import url(../blocks/form/__button-save/form__button-save.css);
-@import url(../blocks/form/__button-delete/form__button-delete.css);
 @import url(../blocks/form/__button-save/_disabled/form__button-save_disabled.css);
 
 /*SECTION - POP-UP OPEN CARD*/
