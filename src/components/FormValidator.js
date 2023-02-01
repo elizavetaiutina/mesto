@@ -41,6 +41,7 @@ export default class FormValidator {
     });
   };
 
+  // Управляем кнопкой
   _toggleButtonState = () => {
     // Если есть хотя бы один невалидный инпут делаем кнопку неактивной иначе активной
     if (this._hasInvalidInput()) {
@@ -52,6 +53,15 @@ export default class FormValidator {
     }
   };
 
+  // Метод для очистки ошибок и управления кнопкой
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
+
   // Слушатель событий добавится всем полям ввода внутри формы
   _setEventListeners = () => {
     this._inputList = Array.from(
@@ -59,13 +69,6 @@ export default class FormValidator {
     );
 
     this._buttonForm = this._form.querySelector(this._submitButtonSelector);
-    this._toggleButtonState();
-    // кнопка после самбита (точнее сбора данных в полях)
-    this._form.addEventListener("reset", () => {
-      setTimeout(() => {
-        this._toggleButtonState();
-      }, 0);
-    });
 
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {

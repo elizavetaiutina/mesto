@@ -5,7 +5,9 @@ export const cardContainer = document.querySelector(".gallery__card-list");
 export const profileName = document.querySelector(".profile__name");
 export const profileAbout = document.querySelector(".profile__profession");
 export const profileAvatar = document.querySelector(".profile__avatar");
-export const editAvatar = document.querySelector(".profile__avatar-overlay");
+export const buttonEditAvatar = document.querySelector(
+  ".profile__avatar-overlay"
+);
 
 // Форма редактирования аватара в попапе
 export const formEditAvatar = document.forms["form-edit-avatar"];

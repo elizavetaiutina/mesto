@@ -7,7 +7,7 @@ import {
   profileName,
   profileAbout,
   profileAvatar,
-  editAvatar,
+  buttonEditAvatar,
   formEditAvatar,
   buttonEditProfile,
   formEditProfile,
@@ -36,28 +36,22 @@ function createCard(item) {
     handleCardClick: () => {
       popupOpenCard.open(item);
     },
-    /* удаление без попапа
-    handleDelete: (id) => {
-      api
-        .deleteCard(id)
-        .then(() => {
-          newCard.deleteCard();
-        })
-        .catch((err) => {
-          console.log(`Ошибка: ${err}.`);
-        });
-    },*/
     sendIdCardToPopup: (id) => {
       popupDeleteCard.open();
       popupDeleteCard.callBackDeleteCardWithPopup(() => {
+        popupDeleteCard.renderLoading(true);
         api
           .deleteCard(id)
           .then(() => {
             newCard.deleteCard();
             console.log("удалили !");
           })
+          .then(() => popupDeleteCard.close())
           .catch((err) => {
             console.log(`Ошибка: ${err}.`);
+          })
+          .finally(() => {
+            popupDeleteCard.renderLoading(false);
           });
       });
     },
@@ -87,15 +81,6 @@ function createCard(item) {
   return newCard.generateCard();
 }
 
-/* -- Отображение уведомления на кнопке пока данные загружаются --*/
-function renderLoading(isLoading, button, text) {
-  if (isLoading) {
-    button.textContent = "Сохранение...";
-  } else {
-    button.textContent = text;
-  }
-}
-
 /* ---------- Popup "Удаление карточки" ---------- */
 
 const popupDeleteCard = new PopupWithDeleteCard({
@@ -108,27 +93,18 @@ popupDeleteCard.setEventListeners();
 
 const popupAvatar = new PopupWithForm({
   selectorPopup: ".pop-up_type_edit-avatar",
-  handleFormSubmit: (formData, button, text) => {
-    renderLoading(true, button, text);
-    api
-      .editUserAvatar(formData)
-      .then((data) => {
-        profileAvatar.src = data.avatar;
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}.`);
-      })
-      .finally(() => {
-        popupAvatar.close();
-        renderLoading(false, button, text);
-      });
+  handleFormSubmit: (formData) => {
+    return api.editUserAvatar(formData).then((data) => {
+      profileAvatar.src = data.avatar;
+    });
   },
 });
 
 popupAvatar.setEventListeners();
 
-editAvatar.addEventListener("click", () => {
+buttonEditAvatar.addEventListener("click", () => {
   popupAvatar.open();
+  validationFormEditAvatar.resetValidation();
 });
 
 /* ---------- Popup "Изменение данных профиля" ---------- */
@@ -140,20 +116,10 @@ const userInfo = new UserInfo({
 
 const popupProfile = new PopupWithForm({
   selectorPopup: ".pop-up_type_edit-profile",
-  handleFormSubmit: (formData, button, text) => {
-    renderLoading(true, button, text);
-    api
-      .editUserInfo(formData)
-      .then((data) => {
-        userInfo.setUserInfo(data);
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}.`);
-      })
-      .finally(() => {
-        popupProfile.close();
-        renderLoading(false, button, text);
-      });
+  handleFormSubmit: (formData) => {
+    return api.editUserInfo(formData).then((data) => {
+      userInfo.setUserInfo(data);
+    });
   },
 });
 
@@ -161,29 +127,21 @@ popupProfile.setEventListeners();
 
 buttonEditProfile.addEventListener("click", () => {
   popupProfile.open();
-  const infoFromProfile = userInfo.getUserInfo();
-  nameInput.value = infoFromProfile.name;
-  jobInput.value = infoFromProfile.about;
+
+  validationFormEditProfile.resetValidation();
+
+  const infoFromProfile = userInfo.getUserInfo(); //////////////
+  popupProfile.setInputValues(infoFromProfile);
 });
 
 /* ---------- Popup "Добавление карточки" ---------- */
 
 const popupAddCard = new PopupWithForm({
   selectorPopup: ".pop-up_type_add-card",
-  handleFormSubmit: (formData, button, text) => {
-    renderLoading(true, button, text);
-    api
-      .createNewCard(formData)
-      .then((data) => {
-        cardList.addItemPrepend(createCard(data));
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}.`);
-      })
-      .finally(() => {
-        popupAddCard.close();
-        renderLoading(false, button, text);
-      });
+  handleFormSubmit: (formData) => {
+    return api.createNewCard(formData).then((data) => {
+      cardList.addItemPrepend(createCard(data));
+    });
   },
 });
 
@@ -191,6 +149,8 @@ popupAddCard.setEventListeners();
 
 buttonAddCard.addEventListener("click", () => {
   popupAddCard.open();
+
+  validationFormAddCard.resetValidation();
 });
 
 /* ---------- Popup "Увеличеная карточка" ---------- */
