@@ -4,15 +4,10 @@ import { objectValidation, token } from "../utils/constants.js";
 
 import {
   cardContainer,
-  profileName,
-  profileAbout,
-  profileAvatar,
   buttonEditAvatar,
   formEditAvatar,
   buttonEditProfile,
   formEditProfile,
-  nameInput,
-  jobInput,
   buttonAddCard,
   formAddCard,
 } from "../utils/elements.js";
@@ -95,7 +90,7 @@ const popupAvatar = new PopupWithForm({
   selectorPopup: ".pop-up_type_edit-avatar",
   handleFormSubmit: (formData) => {
     return api.editUserAvatar(formData).then((data) => {
-      profileAvatar.src = data.avatar;
+      userInfo.setUserInfo(data);
     });
   },
 });
@@ -104,14 +99,15 @@ popupAvatar.setEventListeners();
 
 buttonEditAvatar.addEventListener("click", () => {
   popupAvatar.open();
-  validationFormEditAvatar.resetValidation();
+  formValidators["form-edit-avatar"].resetValidation();
 });
 
 /* ---------- Popup "Изменение данных профиля" ---------- */
 
 const userInfo = new UserInfo({
-  name: profileName,
-  about: profileAbout,
+  nameSelector: ".profile__name",
+  aboutSelector: ".profile__profession",
+  avatarSelector: ".profile__avatar",
 });
 
 const popupProfile = new PopupWithForm({
@@ -127,11 +123,10 @@ popupProfile.setEventListeners();
 
 buttonEditProfile.addEventListener("click", () => {
   popupProfile.open();
+  formValidators["form-edit-profile"].resetValidation();
 
-  validationFormEditProfile.resetValidation();
-
-  const infoFromProfile = userInfo.getUserInfo(); //////////////
-  popupProfile.setInputValues(infoFromProfile);
+  const infoFromProfileForForm = userInfo.getUserInfo();
+  popupProfile.setInputValues(infoFromProfileForForm);
 });
 
 /* ---------- Popup "Добавление карточки" ---------- */
@@ -149,8 +144,7 @@ popupAddCard.setEventListeners();
 
 buttonAddCard.addEventListener("click", () => {
   popupAddCard.open();
-
-  validationFormAddCard.resetValidation();
+  formValidators["form-add-card"].resetValidation();
 });
 
 /* ---------- Popup "Увеличеная карточка" ---------- */
@@ -188,9 +182,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     userId = user._id;
     console.log(cards);
     cardList.renderItems(cards);
-    profileName.textContent = user.name;
-    profileAbout.textContent = user.about;
-    profileAvatar.src = user.avatar;
+    userInfo.setUserInfo(user);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}.`);
@@ -198,17 +190,18 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 
 /* ---------- Валидация 3х форм---------- */
 
-const validationFormEditAvatar = new FormValidator(
-  objectValidation,
-  formEditAvatar
-);
-validationFormEditAvatar.enableValidation();
+const formValidators = {};
 
-const validationFormEditProfile = new FormValidator(
-  objectValidation,
-  formEditProfile
-);
-validationFormEditProfile.enableValidation();
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validation = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute("name"); // получаем данные из атрибута `name` у формы
 
-const validationFormAddCard = new FormValidator(objectValidation, formAddCard);
-validationFormAddCard.enableValidation();
+    formValidators[formName] = validation;
+    validation.enableValidation();
+  });
+};
+
+enableValidation(objectValidation);

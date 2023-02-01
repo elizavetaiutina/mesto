@@ -48,10 +48,8 @@ export default class Card {
 
   _handleLikeCard() {
     if (this.isLiked) {
-      console.log("лайк не нужен, снимаем");
       this._sendDislikeCard(this._id); // отправляем запрос на удаление лайка на сервер
     } else {
-      console.log("лайк нужен, ставим");
       this._sendLikeCard(this._id); // отправляем запрос на сервер
     }
   }

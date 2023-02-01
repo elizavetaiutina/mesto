@@ -2,9 +2,6 @@
 export const cardContainer = document.querySelector(".gallery__card-list");
 
 // Поля профиля на гл странице
-export const profileName = document.querySelector(".profile__name");
-export const profileAbout = document.querySelector(".profile__profession");
-export const profileAvatar = document.querySelector(".profile__avatar");
 export const buttonEditAvatar = document.querySelector(
   ".profile__avatar-overlay"
 );
