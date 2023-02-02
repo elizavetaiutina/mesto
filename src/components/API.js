@@ -16,9 +16,9 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._url}/users/me`, {
+    return this._request(`${this._url}/users/me`, {
       headers: this._headers,
-    }).then(this._checkResponse);
+    });
   }
 
   editUserInfo(data) {
@@ -44,11 +44,11 @@ export default class Api {
   }
 
   createNewCard(data) {
-    return fetch(`${this._url}/cards`, {
+    return this._request(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then(this._checkResponse);
+    });
   }
 
   deleteCard(id) {
