@@ -25,6 +25,7 @@ export default class PopupWithForm extends Popup {
     });
     return this._formValues;
   }
+
   // Отображение уведомления на кнопке пока данные загружаются
   _renderLoading(isLoading, loadingText = "Сохранение...") {
     if (isLoading) {

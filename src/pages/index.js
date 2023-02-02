@@ -1,15 +1,15 @@
+/* Спасибо за Ваш подход к ревью !! Всегда радуюсь, когда попадаю к Вам, 
+потому что знаю, что сейчас я не только исправлю ошибки в своей работе,
+но и получу много крутой и полезной информации для себя ! Спасибо Вам!*/
+
 import "./index.css";
 
 import { objectValidation, token } from "../utils/constants.js";
 
 import {
-  cardContainer,
   buttonEditAvatar,
-  formEditAvatar,
   buttonEditProfile,
-  formEditProfile,
   buttonAddCard,
-  formAddCard,
 } from "../utils/elements.js";
 
 import Section from "../components/Section.js";
@@ -135,7 +135,7 @@ const popupAddCard = new PopupWithForm({
   selectorPopup: ".pop-up_type_add-card",
   handleFormSubmit: (formData) => {
     return api.createNewCard(formData).then((data) => {
-      cardList.addItemPrepend(createCard(data));
+      cardContainer.addItemPrepend(data);
     });
   },
 });
@@ -164,15 +164,10 @@ const api = new Api({
 
 /* ---------- CARD запрос с сервера ---------- */
 
-const cardList = new Section(
-  {
-    renderer: (item) => {
-      const card = createCard(item);
-      cardList.addItem(card);
-    },
-  },
-  cardContainer
-);
+const cardContainer = new Section({
+  renderer: (item) => createCard(item),
+  selectorContainer: ".gallery__card-list",
+});
 
 /* ---------- Запросы данных User и массива карт с сервера при загрузке страницы ---------- */
 
@@ -181,7 +176,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([cards, user]) => {
     userId = user._id;
     console.log(cards);
-    cardList.renderItems(cards);
+    cardContainer.renderItems(cards);
     userInfo.setUserInfo(user);
   })
   .catch((err) => {

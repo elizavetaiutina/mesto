@@ -1,22 +1,25 @@
 export default class Section {
-  constructor({ renderer }, selectorContainer) {
+  constructor({ renderer, selectorContainer }) {
     this._renderer = renderer;
-    this._container = selectorContainer;
+    this._container = document.querySelector(selectorContainer);
   }
 
   //перебирает массив. Внутри вызывает для каждого элемента массива метод addItem
   renderItems(array) {
     array.forEach((item) => {
-      this._renderer(item);
+      this.addItemAppend(item);
     });
   }
 
-  //принимает параметр element и вставляет его в контейнер
-  addItemPrepend(element) {
-    this._container.prepend(element); //в начало
+  //в начало
+  addItemPrepend(item) {
+    const card = this._renderer(item);
+    this._container.prepend(card);
   }
 
-  addItem(element) {
-    this._container.append(element); //в конец
+  //в конец
+  addItemAppend(element) {
+    const card = this._renderer(element);
+    this._container.append(card);
   }
 }

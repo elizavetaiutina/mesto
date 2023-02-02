@@ -11,6 +11,7 @@ export default class PopupWithDeleteCard extends Popup {
     this._callBackDeleteCard = callback;
   }
 
+  // Отображение уведомления на кнопке пока происходит запрос
   renderLoading(isLoading, loadingText = "Удаление...") {
     if (isLoading) {
       this._buttonDelete.textContent = loadingText;
